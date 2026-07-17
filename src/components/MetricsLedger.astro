@@ -1,6 +1,9 @@
 ---
 interface Metric {
-  stat: string;
+  prefix?: string;
+  value: number;
+  suffix?: string;
+  format?: "comma";
   label: string;
 }
 
@@ -9,6 +12,9 @@ interface Props {
 }
 
 const { metrics } = Astro.props;
+
+const shown = (m: Metric) =>
+  m.format === "comma" ? m.value.toLocaleString("en-US") : String(m.value);
 ---
 
 <section class="metrics" aria-labelledby="metrics-title">
@@ -16,8 +22,14 @@ const { metrics } = Astro.props;
   <div class="wrap metrics-grid">
     {
       metrics.map((metric, i) => (
-        <div class="metric" data-reveal style={`--d:${i * 90}ms`}>
-          <span class="stat display">{metric.stat}</span>
+        <div class="metric" data-reveal data-tilt style={`--d:${i * 90}ms`}>
+          <span class="stat display">
+            {metric.prefix}<span
+              data-countup
+              data-target={metric.value}
+              data-format={metric.format}
+            >{shown(metric)}</span>{metric.suffix}
+          </span>
           <p>{metric.label}</p>
         </div>
       ))
@@ -47,6 +59,7 @@ const { metrics } = Astro.props;
     font-size: clamp(2.2rem, 4.5vw, 3.4rem);
     line-height: 1.05;
     color: var(--marigold);
+    font-variant-numeric: tabular-nums;
   }
   .metric p {
     margin-top: 0.5rem;

@@ -11,6 +11,7 @@
   --ink: #221a12;
   --ink-soft: #4a3e2e;
   --tomato: #d9411e;
+  --tomato-deep: #b03212; /* small-text-safe tomato: >=4.5:1 on sand and sand-deep */
   --marigold: #f2a93b;
   --cobalt: #2438b8;
 

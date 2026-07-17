@@ -1,5 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
+import { Image } from "astro:assets";
+import portrait from "../assets/adonias-portrait-900.webp";
 ---
 
 <Base
@@ -9,16 +11,29 @@ import Base from "../layouts/Base.astro";
   <section class="about">
     <div class="wrap-narrow">
       <header class="about-head">
-        <h1 class="page-title display rise" style="--d:0ms">
-          The growth marketer who <span class="uline">builds his own tools.</span>
-        </h1>
-        <p class="lead rise" style="--d:120ms">
-          I've been doing this since 2019: 40+ clients, 30+ websites shipped,
-          and five years of campaigns across outbound, paid, and organic. I
-          started in Addis Ababa building websites and SEO for local
-          businesses, and grew into running growth for B2B SaaS companies in
-          Estonia and the UK without ever needing to be in the room.
-        </p>
+        <div class="about-head-copy">
+          <h1 class="page-title display rise" style="--d:0ms">
+            The growth marketer who <span class="uline">builds his own tools.</span>
+          </h1>
+          <p class="lead rise" style="--d:120ms">
+            I've been doing this since 2019: 40+ clients, 30+ websites shipped,
+            and five years of campaigns across outbound, paid, and organic. I
+            started in Addis Ababa building websites and SEO for local
+            businesses, and grew into running growth for B2B SaaS companies in
+            Estonia and the UK without ever needing to be in the room.
+          </p>
+        </div>
+        <figure class="about-photo rise" style="--d:200ms">
+          <div class="photo-frame" data-tilt>
+            <Image
+              src={portrait}
+              alt="Adonias Nigussie standing with arms crossed in a blue suit"
+              width={480}
+              height={720}
+              loading="lazy"
+            />
+          </div>
+        </figure>
       </header>
 
       <h2 class="about-h2 display" data-reveal>What makes me different</h2>
@@ -83,6 +98,37 @@ import Base from "../layouts/Base.astro";
   }
   .about-head {
     margin-bottom: clamp(2.5rem, 6vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .about-photo {
+    margin: 0;
+    max-width: min(17rem, 78%);
+    rotate: 1.1deg;
+  }
+  .photo-frame {
+    border: var(--line);
+    border-radius: 2px;
+    box-shadow: var(--shadow-ink);
+    background: var(--sand-deep);
+  }
+  .photo-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  @media (min-width: 60rem) {
+    .about-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(15rem, 1fr);
+      column-gap: 4rem;
+      align-items: center;
+    }
+    .about-photo {
+      justify-self: end;
+      max-width: 19rem;
+    }
   }
   .lead {
     margin-top: 1.6rem;

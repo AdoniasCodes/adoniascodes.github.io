@@ -1,6 +1,9 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
+import OrbitBadge from "../components/OrbitBadge.astro";
+import headshot from "../assets/adonias-headshot-800.webp";
 import Ticker from "../components/Ticker.astro";
 import MetricsLedger from "../components/MetricsLedger.astro";
 import WorkLedger from "../components/WorkLedger.astro";
@@ -20,10 +23,10 @@ const workRows = work.map((entry) => ({
 }));
 
 const metrics = [
-  { stat: "300%", label: "client lead-generation lift across 30+ paid campaigns" },
-  { stat: "1,000+", label: "outbound leads per month at 23% open, 6% reply" },
-  { stat: "100 to 500", label: "B2B customers grown in 12 months" },
-  { stat: "70%", label: "execution time cut with AI-driven workflows" },
+  { value: 300, suffix: "%", label: "client lead-generation lift across 30+ paid campaigns" },
+  { value: 1000, suffix: "+", format: "comma" as const, label: "outbound leads per month at 23% open, 6% reply" },
+  { prefix: "100 to ", value: 500, label: "B2B customers grown in 12 months" },
+  { value: 70, suffix: "%", label: "execution time cut with AI-driven workflows" },
 ];
 
 const services = [
@@ -65,10 +68,25 @@ const services = [
         <a class="btn btn-primary" href="/work/">See my work</a>
         <a class="btn btn-secondary" href="/contact/">Get in touch</a>
       </div>
-      <p class="sticker hero-sticker rise" style="--d:340ms">
-        <span class="place">Addis Ababa &middot; GMT+3</span>
-        <span class="zone">US + EU business-hours overlap</span>
-      </p>
+      <figure class="hero-photo rise" style="--d:300ms">
+        <div class="photo-frame" data-tilt>
+          <Image
+            src={headshot}
+            alt="Adonias Nigussie, growth and performance marketer, arms crossed in a blue suit"
+            width={520}
+            height={520}
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <p class="sticker hero-sticker">
+          <span class="place">Addis Ababa &middot; GMT+3</span>
+          <span class="zone">US + EU business-hours overlap</span>
+        </p>
+        <div class="hero-badge">
+          <OrbitBadge />
+        </div>
+      </figure>
     </div>
   </section>
 
@@ -174,18 +192,69 @@ const services = [
     flex-wrap: wrap;
     gap: 1rem;
   }
+  .hero-photo {
+    position: relative;
+    margin: 1.5rem 0 0;
+    max-width: min(21rem, 82%);
+    rotate: -1.2deg;
+  }
+  .photo-frame {
+    border: var(--line);
+    border-radius: 2px;
+    box-shadow: var(--shadow-tomato);
+    background: var(--sand-deep);
+  }
+  .photo-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
   .hero-sticker {
-    align-self: flex-start;
+    position: absolute;
+    top: -1.1rem;
+    right: -0.9rem;
+    transform: rotate(4deg);
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: -2.2rem;
+    left: -2rem;
+  }
+  /* Scroll-driven drift: sticker and badge ease downward as you scroll
+     past the hero. Uses `translate` so it never fights the rotations. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      .hero-sticker,
+      .hero-badge {
+        animation: hero-drift linear both;
+        animation-timeline: scroll();
+        animation-range: 0 100vh;
+      }
+      .hero-badge {
+        animation-name: hero-drift-deep;
+      }
+    }
+  }
+  @keyframes hero-drift {
+    to {
+      translate: 0 26px;
+    }
+  }
+  @keyframes hero-drift-deep {
+    to {
+      translate: 0 44px;
+    }
   }
   @media (min-width: 60rem) {
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 1fr);
       grid-template-areas:
-        "title sticker"
-        "sub   sticker"
-        "cta   sticker";
-      column-gap: 3rem;
+        "title photo"
+        "sub   photo"
+        "cta   photo";
+      column-gap: clamp(3rem, 6vw, 5rem);
+      align-items: start;
     }
     .hero h1 {
       grid-area: title;
@@ -195,12 +264,13 @@ const services = [
     }
     .hero-actions {
       grid-area: cta;
+      align-self: end;
     }
-    .hero-sticker {
-      grid-area: sticker;
-      align-self: start;
-      margin-top: 0.75rem;
-      transform: rotate(4deg);
+    .hero-photo {
+      grid-area: photo;
+      margin: 0.5rem 0 0;
+      max-width: 24rem;
+      justify-self: end;
     }
   }
 
