@@ -1,0 +1,133 @@
+---
+interface Row {
+  href: string;
+  tag: string;
+  client: string;
+  title: string;
+  period?: string;
+  detail?: string;
+}
+
+interface Props {
+  rows: Row[];
+}
+
+const { rows } = Astro.props;
+---
+
+<ul class="work-list">
+  {
+    rows.map((row, i) => (
+      <li>
+        <a
+          class="work-row"
+          href={row.href}
+          data-reveal
+          style={`--d:${i * 70}ms`}
+        >
+          <span class="tag">{row.tag}</span>
+          <span class="row-body">
+            <span class="row-title display">
+              <span class="co">{row.client}:</span> {row.title}
+            </span>
+            {row.detail && <span class="row-detail">{row.detail}</span>}
+            {row.period && <span class="row-period">{row.period}</span>}
+          </span>
+          <span class="row-arrow" aria-hidden="true">
+            &rarr;
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .work-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: var(--line);
+  }
+  .work-row {
+    border-top: var(--line);
+    padding: 1.5rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    text-decoration: none;
+    transition:
+      background-color 0.18s ease-out,
+      padding-left 0.25s var(--ease-out);
+  }
+  .work-row:hover {
+    background: var(--sand-deep);
+  }
+  .row-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .row-title {
+    font-size: clamp(1.25rem, 2.6vw, 1.9rem);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  .row-title .co {
+    color: var(--tomato);
+  }
+  .row-detail {
+    color: var(--ink-soft);
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+  .row-period {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .row-arrow {
+    display: none;
+  }
+  @media (min-width: 60rem) {
+    .work-row {
+      display: grid;
+      grid-template-columns: 10rem 1fr auto;
+      column-gap: 2.5rem;
+      align-items: start;
+      padding: 2rem 1rem;
+    }
+    .work-row .tag {
+      margin-top: 0.35rem;
+      justify-self: start;
+    }
+    .row-arrow {
+      display: block;
+      align-self: center;
+      font-size: 1.5rem;
+      color: var(--ink-soft);
+      transition:
+        transform 0.25s var(--ease-out),
+        color 0.18s ease-out;
+    }
+    .work-row:hover .row-arrow {
+      color: var(--tomato);
+      transform: translateX(6px);
+    }
+    li:nth-child(even) .work-row {
+      padding-left: 4rem;
+    }
+    .work-row:hover {
+      padding-left: 2rem;
+    }
+    li:nth-child(even) .work-row:hover {
+      padding-left: 5rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .work-row,
+    .row-arrow {
+      transition: none;
+    }
+  }
+</style>

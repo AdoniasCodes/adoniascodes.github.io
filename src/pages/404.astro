@@ -1,0 +1,47 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="404, page not found | Adonias Nigussie"
+  description="That page doesn't exist. Head back to the portfolio of Adonias Nigussie, growth and performance marketer working remotely from Addis Ababa, GMT+3."
+>
+  <section class="lost">
+    <div class="wrap">
+      <h1 class="display rise" style="--d:0ms">404</h1>
+      <p class="lost-sub rise" style="--d:120ms">
+        This page doesn't exist. The <span class="uline">work</span> does.
+      </p>
+      <div class="lost-actions rise" style="--d:240ms">
+        <a class="btn btn-primary" href="/">Back to the homepage</a>
+        <a class="btn btn-secondary" href="/work/">See the work</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lost {
+    padding-block: clamp(4rem, 12vw, 9rem);
+  }
+  .lost h1 {
+    font-size: clamp(5rem, 22vw, 9rem);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--tomato);
+    text-shadow: 6px 6px 0 var(--ink);
+  }
+  .lost-sub {
+    margin-top: 1.6rem;
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    font-weight: 600;
+    max-width: 30ch;
+    text-wrap: balance;
+  }
+  .lost-actions {
+    margin-top: 2.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>

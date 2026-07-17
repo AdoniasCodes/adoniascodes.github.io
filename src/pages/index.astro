@@ -1,17 +1,307 @@
 ---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Ticker from "../components/Ticker.astro";
+import MetricsLedger from "../components/MetricsLedger.astro";
+import WorkLedger from "../components/WorkLedger.astro";
+import Testimonial from "../components/Testimonial.astro";
+import TimezoneChart from "../components/TimezoneChart.astro";
 
+const work = (await getCollection("work", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const workRows = work.map((entry) => ({
+  href: `/work/${entry.id}/`,
+  tag: entry.data.tag,
+  client: entry.data.client,
+  title: entry.data.title,
+  period: entry.data.period,
+}));
+
+const metrics = [
+  { stat: "300%", label: "client lead-generation lift across 30+ paid campaigns" },
+  { stat: "1,000+", label: "outbound leads per month at 23% open, 6% reply" },
+  { stat: "100 to 500", label: "B2B customers grown in 12 months" },
+  { stat: "70%", label: "execution time cut with AI-driven workflows" },
+];
+
+const services = [
+  {
+    title: "Customer acquisition",
+    body: "Cold email outbound, paid social and paid search, demand generation. I build the system, write the copywriting, and manage it to a CAC target.",
+  },
+  {
+    title: "SEO and content strategy",
+    body: "Keyword research, editorial planning, blog production, technical SEO. Content that ranks and sells.",
+  },
+  {
+    title: "Funnels and CRO",
+    body: "Landing pages, A/B testing, activation and retention flows, analytics wired end to end in GA4 and HubSpot.",
+  },
+  {
+    title: "AI-powered marketing systems",
+    body: "n8n and LLM workflows that cut execution time by about 70%. I build internal ai tools instead of hiring more hands.",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base
+  title="Adonias Nigussie | Growth & Performance Marketer"
+  description="Adonias Nigussie is a growth and performance marketer helping global teams turn paid media, SEO, and outbound into revenue. Remote from Addis Ababa, GMT+3."
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <h1 id="hero-title" class="display rise" style="--d:0ms">
+        Growth marketing that <span class="uline">pays for itself.</span>
+      </h1>
+      <p class="hero-sub rise" style="--d:120ms">
+        I'm <strong>Adonias Nigussie</strong>, a growth and performance marketer
+        helping global teams turn paid media, SEO, and outbound into revenue.
+        Working remotely from Addis Ababa (GMT+3) with US and EU business-hours
+        overlap.
+      </p>
+      <div class="hero-actions rise" style="--d:240ms">
+        <a class="btn btn-primary" href="/work/">See my work</a>
+        <a class="btn btn-secondary" href="/contact/">Get in touch</a>
+      </div>
+      <p class="sticker hero-sticker rise" style="--d:340ms">
+        <span class="place">Addis Ababa &middot; GMT+3</span>
+        <span class="zone">US + EU business-hours overlap</span>
+      </p>
+    </div>
+  </section>
+
+  <Ticker />
+
+  <MetricsLedger metrics={metrics} />
+
+  <section class="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <h2 id="work-title" class="section-title display" data-reveal>
+        Selected <span class="uline">work</span>
+      </h2>
+      <WorkLedger rows={workRows} />
+    </div>
+  </section>
+
+  <section class="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <h2 id="services-title" class="section-title display" data-reveal>
+        What I <span class="uline">do</span>
+      </h2>
+      <dl class="service-list">
+        {
+          services.map((service, i) => (
+            <div class="service-row" data-reveal style={`--d:${i * 70}ms`}>
+              <dt class="display">{service.title}</dt>
+              <dd>{service.body}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="testimonials" aria-labelledby="testimonials-title">
+    <h2 id="testimonials-title" class="sr-only">What clients say</h2>
+    <div class="wrap quote-stack">
+      <Testimonial
+        quote="Adonias has helped us attract over 400 new clients through SEO and social media in just a span of 1 year and 3 months."
+        source="SMS Ethiopia"
+        rotate={-1}
+      />
+      <Testimonial
+        quote="We have worked with Adonias for over 2 years and he has used his expertise to guide our business efforts."
+        source="Jaktech Engineering & Trading PLC"
+        rotate={1}
+        delay={80}
+      />
+      <Testimonial
+        quote="Top-3 search rankings delivered across 14 target keywords."
+        source="Recognise Designs, UK"
+        rotate={-1}
+        quoted={false}
+        delay={160}
+      />
+    </div>
+  </section>
+
+  <section class="remote" aria-labelledby="remote-title">
+    <div class="wrap remote-grid">
+      <div class="remote-copy" data-reveal>
+        <h2 id="remote-title" class="section-title display">Built for remote. <span class="uline">Proven across time zones.</span></h2>
+        <p>
+          I work with US and EU teams every day from Addis Ababa. My hours cover
+          9 AM to 5 PM US Central, with full EU overlap. My stack: Slack,
+          Notion, Jira, GitHub, async standups, and documentation people
+          actually read. Contract-ready directly or through EOR platforms like
+          Deel and Remote.com.
+        </p>
+      </div>
+      <TimezoneChart />
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------- Hero ---------- */
+  .hero {
+    padding-block: clamp(3.5rem, 9vw, 7rem) clamp(3.5rem, 8vw, 6rem);
+  }
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 8vw, 5.4rem);
+    line-height: 1.02;
+    max-width: 13ch;
+    text-transform: uppercase;
+  }
+  .hero-sub {
+    max-width: 56ch;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .hero-sub strong {
+    color: var(--ink);
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .hero-sticker {
+    align-self: flex-start;
+  }
+  @media (min-width: 60rem) {
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "title sticker"
+        "sub   sticker"
+        "cta   sticker";
+      column-gap: 3rem;
+    }
+    .hero h1 {
+      grid-area: title;
+    }
+    .hero-sub {
+      grid-area: sub;
+    }
+    .hero-actions {
+      grid-area: cta;
+    }
+    .hero-sticker {
+      grid-area: sticker;
+      align-self: start;
+      margin-top: 0.75rem;
+      transform: rotate(4deg);
+    }
+  }
+
+  /* ---------- Work ---------- */
+  .work {
+    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  }
+
+  /* ---------- Services ---------- */
+  .services {
+    background: var(--sand-deep);
+    border-top: var(--line);
+    border-bottom: var(--line);
+    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  }
+  .service-list {
+    margin: 0;
+    border-bottom: var(--line-thin);
+  }
+  .service-row {
+    border-top: var(--line-thin);
+    padding: 1.4rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .service-row dt {
+    font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .service-row dd {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    text-wrap: pretty;
+  }
+  @media (min-width: 60rem) {
+    .service-row {
+      display: grid;
+      grid-template-columns: minmax(16rem, 1fr) 2fr;
+      column-gap: 3rem;
+      align-items: start;
+      padding: 1.9rem 0.5rem;
+    }
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials {
+    padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(4rem, 9vw, 7rem);
+  }
+  .quote-stack {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 5vw, 3rem);
+  }
+  .quote-stack > :global(.quote-block) {
+    max-width: 46rem;
+  }
+  @media (min-width: 60rem) {
+    .quote-stack > :global(.quote-block:nth-child(2)) {
+      align-self: flex-end;
+    }
+    .quote-stack > :global(.quote-block:nth-child(3)) {
+      align-self: center;
+      max-width: 38rem;
+    }
+  }
+
+  /* ---------- Remote readiness ---------- */
+  .remote {
+    background: var(--sand-deep);
+    border-top: var(--line);
+    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  }
+  .remote-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .remote-copy .section-title {
+    margin-bottom: 1.5rem;
+    max-width: 16ch;
+  }
+  .remote-copy p {
+    max-width: 54ch;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .remote :global(.overlap) {
+    background: var(--sand);
+  }
+  @media (min-width: 60rem) {
+    .remote-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(22rem, 1fr);
+      column-gap: 4rem;
+      align-items: center;
+    }
+    .remote :global(.overlap) {
+      justify-self: end;
+    }
+  }
+</style>

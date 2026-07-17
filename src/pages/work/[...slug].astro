@@ -1,0 +1,164 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const entries = (await getCollection("work", ({ data }) => !data.draft)).sort(
+    (a, b) => a.data.order - b.data.order
+  );
+  return entries.map((entry, i) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      prev: entries[(i - 1 + entries.length) % entries.length],
+      next: entries[(i + 1) % entries.length],
+    },
+  }));
+}
+
+const { entry, prev, next } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+const description = `${d.client} case study: ${d.teaser.toLowerCase()}. ${d.role}, ${d.period}.`;
+---
+
+<Base title={`${d.client}: ${d.title} | Adonias Nigussie`} description={description} type="article">
+  <article class="case">
+    <div class="wrap-narrow">
+      <header class="case-head">
+        <span class="tag rise" style="--d:0ms">{d.tag}</span>
+        <h1 class="display rise" style="--d:100ms">
+          <span class="co">{d.client}:</span> {d.title}
+        </h1>
+        <dl class="case-meta rise" style="--d:200ms">
+          <div>
+            <dt>Role</dt>
+            <dd>{d.role}</dd>
+          </div>
+          <div>
+            <dt>Client</dt>
+            <dd>{d.clientDetail}</dd>
+          </div>
+          <div>
+            <dt>Period</dt>
+            <dd>{d.period}</dd>
+          </div>
+        </dl>
+      </header>
+
+      <div class="case-prose">
+        <Content />
+      </div>
+
+      <nav class="case-nav" aria-label="More case studies">
+        <a href={`/work/${prev.id}/`} rel="prev">
+          <span class="dir">&larr; Previous</span>
+          <span class="name display">{prev.data.client}</span>
+        </a>
+        <a href={`/work/${next.id}/`} rel="next" class="next">
+          <span class="dir">Next &rarr;</span>
+          <span class="name display">{next.data.client}</span>
+        </a>
+      </nav>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .case {
+    padding-block: clamp(3.5rem, 8vw, 6rem) clamp(4rem, 9vw, 7rem);
+  }
+  .case-head {
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+  .case-head .tag {
+    margin-bottom: 1.2rem;
+  }
+  .case-head h1 {
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    line-height: 1.06;
+    text-transform: uppercase;
+  }
+  .case-head h1 .co {
+    color: var(--tomato);
+  }
+  .case-meta {
+    margin-top: clamp(1.8rem, 4vw, 2.6rem);
+    border-top: var(--line);
+    border-bottom: var(--line);
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .case-meta > div {
+    padding: 0.9rem 0.25rem;
+    border-top: var(--line-thin);
+  }
+  .case-meta > div:first-child {
+    border-top: none;
+  }
+  .case-meta dt {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tomato);
+  }
+  .case-meta dd {
+    margin: 0.25rem 0 0;
+    font-weight: 600;
+    text-wrap: pretty;
+  }
+  @media (min-width: 52rem) {
+    .case-meta {
+      grid-template-columns: 1.2fr 1.4fr 1fr;
+    }
+    .case-meta > div {
+      border-top: none;
+      border-left: var(--line-thin);
+      padding: 1.1rem 1.4rem;
+    }
+    .case-meta > div:first-child {
+      border-left: none;
+      padding-left: 0.25rem;
+    }
+  }
+  .case-nav {
+    margin-top: clamp(3rem, 7vw, 5rem);
+    border-top: var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-top: 1.5rem;
+  }
+  .case-nav a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    text-decoration: none;
+  }
+  .case-nav a.next {
+    text-align: right;
+    align-items: flex-end;
+  }
+  .case-nav .dir {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+  .case-nav .name {
+    font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.18s ease-out;
+  }
+  .case-nav a:hover .name {
+    border-bottom-color: var(--tomato);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case-nav .name {
+      transition: none;
+    }
+  }
+</style>

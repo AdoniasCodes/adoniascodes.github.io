@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import WorkLedger from "../../components/WorkLedger.astro";
+
+const work = (await getCollection("work", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const rows = work.map((entry) => ({
+  href: `/work/${entry.id}/`,
+  tag: entry.data.tag,
+  client: entry.data.client,
+  title: entry.data.title,
+  detail: entry.data.role,
+  period: entry.data.period,
+}));
+---
+
+<Base
+  title="Work | Adonias Nigussie, Growth & Performance Marketer"
+  description="Five growth marketing case studies with real numbers: outbound engines, 30+ paid campaigns, SEO from zero, and a B2B product taken from 100 to 500 customers."
+>
+  <section class="work-index">
+    <div class="wrap">
+      <header class="work-head">
+        <h1 class="page-title display rise" style="--d:0ms">
+          Selected <span class="uline">work</span>
+        </h1>
+        <p class="work-intro rise" style="--d:120ms">
+          Five engagements, five sets of real numbers. Every case study below
+          reports figures from campaign dashboards I built myself.
+        </p>
+      </header>
+      <WorkLedger rows={rows} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .work-index {
+    padding-block: clamp(3.5rem, 8vw, 6rem) clamp(4rem, 9vw, 7rem);
+  }
+  .work-head {
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+  .work-intro {
+    margin-top: 1.4rem;
+    max-width: 52ch;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+</style>

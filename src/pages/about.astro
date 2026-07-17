@@ -1,0 +1,141 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="About | Adonias Nigussie, Growth & Performance Marketer"
+  description="Growth marketer since 2019: 40+ clients, 30+ websites, and five years of outbound, paid, and organic campaigns. Remote from Addis Ababa for global teams."
+>
+  <section class="about">
+    <div class="wrap-narrow">
+      <header class="about-head">
+        <h1 class="page-title display rise" style="--d:0ms">
+          The growth marketer who <span class="uline">builds his own tools.</span>
+        </h1>
+        <p class="lead rise" style="--d:120ms">
+          I've been doing this since 2019: 40+ clients, 30+ websites shipped,
+          and five years of campaigns across outbound, paid, and organic. I
+          started in Addis Ababa building websites and SEO for local
+          businesses, and grew into running growth for B2B SaaS companies in
+          Estonia and the UK without ever needing to be in the room.
+        </p>
+      </header>
+
+      <h2 class="about-h2 display" data-reveal>What makes me different</h2>
+      <div class="diff-list">
+        <p data-reveal>
+          <strong>I ship systems, not just campaigns.</strong> When execution
+          gets slow, I build the tool that fixes it. n8n pipelines, LLM-powered
+          workflows, internal apps. At Pairing.dev that cut campaign execution
+          time by about 70%. I even built my own job-application tracking
+          system with 12 data sources and AI-driven scoring, because
+          spreadsheets were too slow.
+        </p>
+        <p data-reveal style="--d:70ms">
+          <strong>I've done every layer.</strong> Cold email copywriting, Meta
+          and Google and TikTok media buying, technical SEO, funnel builds on
+          four CMS platforms, analytics in GA4 and HubSpot, and team management
+          (5 to 7 people across creative, media buying, and events). You can
+          hand me a growth problem without also hiring three specialists around
+          me.
+        </p>
+        <p data-reveal style="--d:140ms">
+          <strong>I sell, not just market.</strong> At Skylink Technologies I
+          closed 11 private-sector accounts worth roughly 2.3M ETB and secured
+          government contracts grossing 80M+ ETB. Marketing that never touches
+          revenue is decoration.
+        </p>
+        <p data-reveal style="--d:210ms">
+          <strong>I teach it too.</strong> I've trained 50+ students in digital
+          marketing, with 35 to 45% landing jobs afterward. Nothing sharpens
+          your own playbook like having to explain it.
+        </p>
+      </div>
+
+      <h2 class="about-h2 display" data-reveal>The remote question, answered</h2>
+      <p class="remote-answer" data-reveal>
+        Yes, I'm in Addis Ababa. Here's what that means in practice: my working
+        hours cover 9 AM to 5 PM US Central with full EU overlap, I've worked
+        remotely with Estonian and UK teams for years, and I run on Slack,
+        Notion, Jira, GitHub, and async documentation. Contract-ready directly
+        or through EOR platforms like Deel and Remote.com. Timezone has never
+        cost a client a deadline.
+      </p>
+
+      <h2 class="about-h2 display" data-reveal>Education &amp; certifications</h2>
+      <ul class="edu-list" data-reveal>
+        <li>BSc, Information Systems, Addis Ababa University (2021)</li>
+        <li>HubSpot Inbound Marketing, SEO, and Full Funnel certifications</li>
+        <li>Digital Marketing Certification</li>
+      </ul>
+
+      <div class="about-cta" data-reveal>
+        <a class="btn btn-primary" href="/work/">See the work</a>
+        <a class="btn btn-secondary" href="/contact/">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about {
+    padding-block: clamp(3.5rem, 8vw, 6rem) clamp(4rem, 9vw, 7rem);
+  }
+  .about-head {
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+  .lead {
+    margin-top: 1.6rem;
+    max-width: 62ch;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    text-wrap: pretty;
+  }
+  .about-h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.15;
+    text-transform: uppercase;
+    margin-top: clamp(2.8rem, 6vw, 4rem);
+    padding-bottom: 0.3rem;
+    background-image: linear-gradient(var(--tomato), var(--tomato));
+    background-size: 3.5ch 0.22em;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+  }
+  .diff-list {
+    margin-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+  .diff-list p,
+  .remote-answer {
+    max-width: 66ch;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .diff-list p strong,
+  .remote-answer strong {
+    color: var(--ink);
+  }
+  .remote-answer {
+    margin-top: 1.4rem;
+  }
+  .edu-list {
+    margin: 1.4rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: var(--line-thin);
+    max-width: 42rem;
+  }
+  .edu-list li {
+    border-top: var(--line-thin);
+    padding: 0.85rem 0.25rem;
+    font-weight: 600;
+  }
+  .about-cta {
+    margin-top: clamp(2.8rem, 6vw, 4rem);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>

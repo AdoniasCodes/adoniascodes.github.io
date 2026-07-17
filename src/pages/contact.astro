@@ -1,0 +1,296 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Contact | Adonias Nigussie, Growth & Performance Marketer"
+  description="Hiring for a growth, performance marketing, or SEO role? Send Adonias Nigussie a message. Replies within one business day, from Addis Ababa, GMT+3."
+>
+  <section class="contact">
+    <div class="wrap">
+      <header class="contact-head">
+        <h1 class="page-title display rise" style="--d:0ms">
+          Let's <span class="uline">talk.</span>
+        </h1>
+        <p class="lead rise" style="--d:120ms">
+          Hiring for a growth, performance marketing, or SEO role? Or need a
+          marketer who can own a problem end to end? Send a message. I reply
+          within one business day.
+        </p>
+      </header>
+
+      <div class="contact-grid">
+        <form
+          id="contact-form"
+          class="contact-form rise"
+          style="--d:240ms"
+          name="contact"
+          method="POST"
+          action="/"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hp" aria-hidden="true">
+            <label>
+              Don't fill this out if you're human:
+              <input name="bot-field" tabindex="-1" autocomplete="off" />
+            </label>
+          </p>
+
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="cf-company">Company <span class="opt">(optional)</span></label>
+            <input id="cf-company" name="company" type="text" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="cf-message">What do you need?</label>
+            <textarea id="cf-message" name="message" rows="6" required></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Send message</button>
+
+          <p class="small-print">
+            Open to international remote roles (contractor or EOR via Deel /
+            Remote.com) and freelance engagements.
+          </p>
+        </form>
+
+        <aside class="channels rise" style="--d:340ms" aria-label="Direct channels">
+          <h2 class="display">Direct channels</h2>
+          <ul>
+            <li>
+              <span class="ch-label">Email</span>
+              <a href="mailto:adoniasnigussie@gmail.com">adoniasnigussie@gmail.com</a>
+            </li>
+            <li>
+              <span class="ch-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/adoniasn/" rel="noopener">linkedin.com/in/adoniasn</a>
+            </li>
+            <li>
+              <span class="ch-label">WhatsApp</span>
+              <a href="https://wa.me/251944721682" rel="noopener">+251 944 721 682</a>
+            </li>
+            <li>
+              <span class="ch-label">Base</span>
+              <span>
+                Addis Ababa, Ethiopia (GMT+3) &middot; available 9 AM to 5 PM US
+                Central &middot; full EU overlap
+              </span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <dialog id="contact-modal" class="contact-modal">
+    <p id="contact-modal-message">Got it. I'll reply within one business day.</p>
+    <form method="dialog">
+      <button class="btn btn-primary" autofocus>OK</button>
+    </form>
+  </dialog>
+</Base>
+
+<style>
+  .contact {
+    padding-block: clamp(3.5rem, 8vw, 6rem) clamp(4rem, 9vw, 7rem);
+  }
+  .contact-head {
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+  .lead {
+    margin-top: 1.6rem;
+    max-width: 56ch;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    align-items: start;
+  }
+  @media (min-width: 60rem) {
+    .contact-grid {
+      grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 1fr);
+    }
+  }
+
+  /* ---------- Form ---------- */
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.4rem;
+  }
+  .field label {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .field .opt {
+    font-family: var(--font-body);
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+  }
+  .field input,
+  .field textarea {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--sand);
+    border: var(--line);
+    border-radius: 2px;
+    padding: 0.7rem 0.9rem;
+    box-shadow: 4px 4px 0 var(--sand-deep);
+    transition: box-shadow 0.15s ease-out;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+  .field input:focus-visible,
+  .field textarea:focus-visible {
+    outline: 3px solid var(--cobalt);
+    outline-offset: 2px;
+    box-shadow: 2px 2px 0 var(--sand-deep);
+  }
+  .contact-form .btn[disabled] {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+  }
+  .small-print {
+    margin-top: 1.3rem;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    max-width: 48ch;
+  }
+
+  /* ---------- Direct channels ---------- */
+  .channels {
+    border: var(--line);
+    border-radius: 2px;
+    background: var(--sand-deep);
+    box-shadow: var(--shadow-ink);
+    padding: clamp(1.4rem, 3vw, 2rem);
+  }
+  .channels h2 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .channels ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .channels li {
+    padding-block: 0.85rem;
+    border-top: var(--line-thin);
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    overflow-wrap: anywhere;
+  }
+  .channels li:last-child {
+    padding-bottom: 0;
+  }
+  .ch-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--tomato);
+  }
+  .channels a {
+    font-weight: 600;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--tomato);
+  }
+  .channels a:hover {
+    color: var(--tomato);
+  }
+
+  /* ---------- Blocking modal ---------- */
+  .contact-modal {
+    margin: auto;
+    max-width: min(28rem, calc(100vw - 2.5rem));
+    background: var(--sand);
+    color: var(--ink);
+    border: var(--line);
+    border-radius: 2px;
+    box-shadow: var(--shadow-tomato);
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+  }
+  .contact-modal::backdrop {
+    background: rgba(34, 26, 18, 0.55);
+  }
+  .contact-modal p {
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-wrap: pretty;
+  }
+  .contact-modal form {
+    margin-top: 1.4rem;
+  }
+</style>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const modal = document.getElementById("contact-modal") as HTMLDialogElement;
+  const message = document.getElementById("contact-modal-message")!;
+
+  const SUCCESS = "Got it. I'll reply within one business day.";
+  const ERROR =
+    "Something broke and your message didn't send. Email me directly at adoniasnigussie@gmail.com.";
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+    button.disabled = true;
+    button.textContent = "Sending…";
+
+    const pairs: [string, string][] = [];
+    new FormData(form).forEach((value, key) => {
+      pairs.push([key, String(value)]);
+    });
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(pairs).toString(),
+      });
+      if (!response.ok) throw new Error(String(response.status));
+      message.textContent = SUCCESS;
+      form.reset();
+    } catch {
+      message.textContent = ERROR;
+    } finally {
+      button.disabled = false;
+      button.textContent = "Send message";
+      modal.showModal();
+    }
+  });
+</script>

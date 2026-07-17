@@ -1,6 +1,8 @@
 ---
 import Seo from "../components/Seo.astro";
 import PersonSchema from "../components/PersonSchema.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -18,13 +20,27 @@ const { title, description, ogImage, type } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <Seo title={title} description={description} ogImage={ogImage} type={type} />
     <PersonSchema />
+    <script is:inline>
+      /* Arms the motion gate before first paint; reduced-motion CSS
+         overrides it, and content stays visible without JS. */
+      document.documentElement.classList.add("js");
+    </script>
     <slot name="head" />
   </head>
   <body>
-    <slot />
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import "../scripts/reveal.js";
+    </script>
   </body>
 </html>

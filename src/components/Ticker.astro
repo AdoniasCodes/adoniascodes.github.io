@@ -1,0 +1,61 @@
+---
+const skills = [
+  "Cold Email Outbound",
+  "Paid Social",
+  "Google Ads",
+  "SEO",
+  "CRO",
+  "A/B Testing",
+  "GA4",
+  "HubSpot",
+  "n8n",
+  "AI Workflows",
+];
+
+const line = skills.map((s) => `${s} ✶ `).join("");
+---
+
+<div class="ticker">
+  <div class="ticker-track" aria-hidden="true">
+    <span>{line}</span>
+    <span>{line}</span>
+  </div>
+  <p class="sr-only">Skills: {skills.join(", ")}.</p>
+</div>
+
+<style>
+  .ticker {
+    border-top: var(--line);
+    border-bottom: var(--line);
+    background: var(--marigold);
+    overflow: hidden;
+    padding-block: 0.7rem;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 32s linear infinite;
+  }
+  .ticker-track span {
+    flex: none;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    padding-right: 1.5rem;
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track {
+      animation: none;
+    }
+  }
+</style>

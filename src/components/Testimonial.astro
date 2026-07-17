@@ -1,0 +1,72 @@
+---
+interface Props {
+  quote: string;
+  source: string;
+  role?: string;
+  rotate?: number;
+  quoted?: boolean;
+  delay?: number;
+}
+
+const {
+  quote,
+  source,
+  role,
+  rotate = -1,
+  quoted = true,
+  delay = 0,
+} = Astro.props;
+---
+
+<figure
+  class:list={["quote-block", { unquoted: !quoted }]}
+  style={`--rot:${rotate}deg; --d:${delay}ms`}
+  data-reveal
+>
+  <blockquote>
+    <p>{quote}</p>
+  </blockquote>
+  <figcaption>
+    {source}{role && <span class="role"> &middot; {role}</span>}
+  </figcaption>
+</figure>
+
+<style>
+  .quote-block {
+    transform: rotate(var(--rot, -1deg));
+    background: var(--sand-deep);
+    border: var(--line);
+    border-radius: 2px;
+    box-shadow: var(--shadow-tomato);
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+  }
+  blockquote {
+    margin: 0;
+  }
+  blockquote p {
+    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+    font-weight: 600;
+    line-height: 1.35;
+    text-wrap: pretty;
+    margin: 0;
+  }
+  .quote-block:not(.unquoted) blockquote p::before {
+    content: "\201C";
+    color: var(--tomato);
+  }
+  .quote-block:not(.unquoted) blockquote p::after {
+    content: "\201D";
+    color: var(--tomato);
+  }
+  figcaption {
+    margin-top: 1.2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.12em;
+  }
+  figcaption .role {
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+</style>

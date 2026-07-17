@@ -1,1 +1,363 @@
+@import "@fontsource/archivo-black";
+@import "@fontsource-variable/archivo";
 @import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens: warm brutalist-lite (DESIGN.md)
+------------------------------------------------------------------- */
+:root {
+  --sand: #f5eddc;
+  --sand-deep: #ecdfc4;
+  --ink: #221a12;
+  --ink-soft: #4a3e2e;
+  --tomato: #d9411e;
+  --marigold: #f2a93b;
+  --cobalt: #2438b8;
+
+  --font-display: "Archivo Black", "Archivo Variable", "Helvetica Neue", sans-serif;
+  --font-body: "Archivo Variable", "Helvetica Neue", sans-serif;
+
+  --line: 3px solid var(--ink);
+  --line-thin: 2px solid var(--ink);
+  --shadow-ink: 6px 6px 0 var(--ink);
+  --shadow-tomato: 6px 6px 0 var(--tomato);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --z-nav: 20;
+  --z-skip: 30;
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--tomato);
+  color: var(--sand);
+}
+
+:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: var(--z-skip);
+  background: var(--ink);
+  color: var(--sand);
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+.wrap {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+.wrap-narrow {
+  max-width: 52rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* Chunky tomato underline */
+.uline {
+  background-image: linear-gradient(var(--tomato), var(--tomato));
+  background-size: 100% 0.14em;
+  background-position: 0 94%;
+  background-repeat: no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  text-transform: uppercase;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+.section-title .uline {
+  background-size: 100% 0.16em;
+}
+
+.page-title {
+  font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+  line-height: 1.04;
+  text-transform: uppercase;
+  max-width: 18ch;
+}
+
+/* ------------------------------------------------------------------
+   Buttons
+------------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.85rem 1.6rem;
+  border: var(--line);
+  border-radius: 2px;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease-out,
+    box-shadow 0.15s ease-out;
+}
+.btn-primary {
+  background: var(--ink);
+  color: var(--sand);
+  box-shadow: var(--shadow-tomato);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: 6px 6px 0 var(--sand-deep);
+}
+.btn:hover,
+.btn:focus-visible {
+  transform: translate(3px, 3px);
+}
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  box-shadow: 3px 3px 0 var(--tomato);
+}
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  box-shadow: 3px 3px 0 var(--sand-deep);
+}
+.btn-talk {
+  background: var(--marigold);
+  color: var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+}
+.btn-talk:hover,
+.btn-talk:focus-visible {
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* ------------------------------------------------------------------
+   Sticker (marigold, rotated, breaks the grid)
+------------------------------------------------------------------- */
+.sticker {
+  display: inline-block;
+  transform: rotate(-2deg);
+  background: var(--marigold);
+  border: var(--line);
+  border-radius: 2px;
+  box-shadow: var(--shadow-ink);
+  padding: 0.7rem 1.1rem;
+  line-height: 1.35;
+}
+.sticker .place {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.sticker .zone {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------
+   Tag chip (marigold, thin ink border)
+------------------------------------------------------------------- */
+.tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--marigold);
+  border: var(--line-thin);
+  border-radius: 2px;
+  padding: 0.15rem 0.5rem;
+}
+
+/* ------------------------------------------------------------------
+   Motion: hero rise on load + scroll reveals.
+   Content is fully visible without JS; .js on <html> arms the gate.
+------------------------------------------------------------------- */
+.js .rise {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.85s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+.js.loaded .rise {
+  opacity: 1;
+  transform: none;
+}
+
+.will-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.55s ease-out,
+    transform 0.7s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+.will-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .rise,
+  .will-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .btn {
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Case-study prose (rendered markdown from the work collection)
+------------------------------------------------------------------- */
+.case-prose {
+  max-width: 68ch;
+}
+.case-prose > * + * {
+  margin-top: 1.15em;
+}
+.case-prose h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2.8vw, 1.9rem);
+  line-height: 1.15;
+  text-transform: uppercase;
+  margin-top: clamp(2.4rem, 5vw, 3.4rem);
+  padding-bottom: 0.3rem;
+  background-image: linear-gradient(var(--tomato), var(--tomato));
+  background-size: 3.5ch 0.22em;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+}
+.case-prose p {
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+.case-prose p strong {
+  color: var(--ink);
+}
+.case-prose a {
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--tomato);
+}
+.case-prose a:hover {
+  color: var(--tomato);
+}
+.case-prose > p:first-child {
+  color: var(--ink);
+  font-size: 1.1rem;
+}
+
+/* Result bullets: ink-block ledger, marigold figures */
+.case-prose ul {
+  list-style: none;
+  background: var(--ink);
+  color: var(--sand-deep);
+  border-radius: 2px;
+  box-shadow: var(--shadow-tomato);
+  padding: clamp(1.1rem, 3vw, 1.8rem) clamp(1.2rem, 3.5vw, 2rem);
+  margin-block: 1.8em;
+}
+.case-prose ul li {
+  padding-block: 0.75rem;
+  border-top: 2px solid #4b4030;
+  text-wrap: pretty;
+}
+.case-prose ul li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.case-prose ul li:last-child {
+  padding-bottom: 0;
+}
+.case-prose ul strong {
+  color: var(--marigold);
+  font-weight: 700;
+}
+
+/* Italic closing line: the editorial note */
+.case-prose > p:last-child em {
+  display: block;
+  margin-top: clamp(2.2rem, 5vw, 3rem);
+  padding: 1rem 1.3rem;
+  border: var(--line-thin);
+  border-radius: 2px;
+  background: var(--sand-deep);
+  transform: rotate(-0.6deg);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--ink);
+  max-width: 52ch;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

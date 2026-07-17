@@ -1,0 +1,75 @@
+---
+interface Metric {
+  stat: string;
+  label: string;
+}
+
+interface Props {
+  metrics: Metric[];
+}
+
+const { metrics } = Astro.props;
+---
+
+<section class="metrics" aria-labelledby="metrics-title">
+  <h2 id="metrics-title" class="sr-only">Results</h2>
+  <div class="wrap metrics-grid">
+    {
+      metrics.map((metric, i) => (
+        <div class="metric" data-reveal style={`--d:${i * 90}ms`}>
+          <span class="stat display">{metric.stat}</span>
+          <p>{metric.label}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .metrics {
+    background: var(--ink);
+    color: var(--sand);
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .metric {
+    padding: 1.6rem 0.25rem;
+    border-top: 2px solid #4b4030;
+  }
+  .metric:first-child {
+    border-top: none;
+  }
+  .stat {
+    display: block;
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    line-height: 1.05;
+    color: var(--marigold);
+  }
+  .metric p {
+    margin-top: 0.5rem;
+    max-width: 30ch;
+    font-size: 0.98rem;
+    color: #e9dfc9;
+  }
+  @media (min-width: 46rem) {
+    .metrics-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .metric {
+      padding: 2.2rem 2.4rem;
+      border-top: 2px solid #4b4030;
+      border-left: 2px solid #4b4030;
+    }
+    .metric:nth-child(1),
+    .metric:nth-child(2) {
+      border-top: none;
+    }
+    .metric:nth-child(odd) {
+      border-left: none;
+      padding-left: 0;
+    }
+  }
+</style>

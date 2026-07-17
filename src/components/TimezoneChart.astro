@@ -1,0 +1,219 @@
+---
+/*
+ * 24-hour timezone-overlap chart. US CST 9 to 5 maps to 18:00 to 02:00
+ * in Addis Ababa; EU CET 9 to 5 maps to 11:00 to 19:00. The "now"
+ * marker tracks the live Africa/Addis_Ababa clock.
+ */
+---
+
+<figure class="overlap" data-reveal>
+  <figcaption>
+    Working-hours overlap &middot; Addis Ababa time
+    <span class="clock-line">Now in Addis: <span data-tz-clock>--:--</span></span>
+  </figcaption>
+  <div class="ol-rows">
+    <div class="ol-row">
+      <span class="ol-label">US CST 9 to 5</span>
+      <div
+        class="ol-bar ol-us"
+        role="img"
+        aria-label="US Central business hours map to 6 PM to 2 AM Addis Ababa time"
+      >
+      </div>
+    </div>
+    <div class="ol-row">
+      <span class="ol-label">EU CET 9 to 5</span>
+      <div
+        class="ol-bar ol-eu"
+        role="img"
+        aria-label="EU Central business hours map to 11 AM to 7 PM Addis Ababa time"
+      >
+      </div>
+    </div>
+    <div class="ol-track" aria-hidden="true">
+      <div class="now-marker" data-tz-marker></div>
+    </div>
+  </div>
+  <div class="ol-scale" aria-hidden="true">
+    <span>00</span><span>06</span><span>12</span><span>18</span><span>24</span>
+  </div>
+  <p class="ol-key">
+    <span class="key key-us">US overlap</span>
+    <span class="key key-eu">EU overlap</span>
+  </p>
+</figure>
+
+<style>
+  .overlap {
+    background: var(--sand);
+    border: var(--line);
+    border-radius: 2px;
+    box-shadow: var(--shadow-ink);
+    padding: 1.4rem 1.5rem 1.2rem;
+    max-width: 30rem;
+    width: 100%;
+    margin: 0;
+  }
+  figcaption {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.3rem 1rem;
+  }
+  .clock-line {
+    font-family: var(--font-body);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--tomato);
+    font-variant-numeric: tabular-nums;
+  }
+  .ol-rows {
+    position: relative;
+  }
+  .ol-row {
+    display: grid;
+    grid-template-columns: 6.8em 1fr;
+    align-items: center;
+    gap: 0.9em;
+  }
+  .ol-row + .ol-row {
+    margin-top: 0.8rem;
+  }
+  .ol-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .ol-bar {
+    height: 16px;
+    border: var(--line-thin);
+    border-radius: 2px;
+    background-repeat: repeat-x, no-repeat;
+    background-size:
+      calc(100% / 24) 100%,
+      100% 100%;
+  }
+  /* US CST 09:00 to 17:00 is 18:00 to 02:00 in Addis Ababa */
+  .ol-us {
+    background-image: linear-gradient(90deg, var(--ink) 0 1px, transparent 1px),
+      linear-gradient(
+        90deg,
+        var(--tomato) 0 8.33%,
+        var(--sand-deep) 8.33% 75%,
+        var(--tomato) 75% 100%
+      );
+  }
+  /* EU CET 09:00 to 17:00 is 11:00 to 19:00 in Addis Ababa */
+  .ol-eu {
+    background-image: linear-gradient(90deg, var(--ink) 0 1px, transparent 1px),
+      linear-gradient(
+        90deg,
+        var(--sand-deep) 0 45.8%,
+        var(--ink) 45.8% 79.2%,
+        var(--sand-deep) 79.2% 100%
+      );
+  }
+  /* Overlay aligned to the bar column only, so the marker's
+     percentage maps 1:1 onto the 24-hour track. */
+  .ol-track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(6.8em + 0.9em);
+    right: 0;
+    pointer-events: none;
+  }
+  .now-marker {
+    position: absolute;
+    top: -6px;
+    bottom: -6px;
+    width: 3px;
+    background: var(--ink);
+    box-shadow: 0 0 0 1.5px var(--sand);
+    left: 50%;
+    pointer-events: none;
+  }
+  .now-marker::after {
+    content: "NOW";
+    position: absolute;
+    top: -1.15rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-display);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+  .ol-scale {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.55rem;
+    margin-left: calc(6.8em + 0.9em);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  .ol-key {
+    display: flex;
+    gap: 1.4rem;
+    margin: 1.1rem 0 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .key::before {
+    content: "";
+    display: inline-block;
+    width: 0.85em;
+    height: 0.85em;
+    margin-right: 0.45em;
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    vertical-align: -0.08em;
+  }
+  .key-us::before {
+    background: var(--tomato);
+  }
+  .key-eu::before {
+    background: var(--ink);
+  }
+</style>
+
+<script>
+  function tick() {
+    try {
+      const fmt = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Africa/Addis_Ababa",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      });
+      let h = 0;
+      let m = 0;
+      for (const p of fmt.formatToParts(new Date())) {
+        if (p.type === "hour") h = parseInt(p.value, 10) % 24;
+        if (p.type === "minute") m = parseInt(p.value, 10);
+      }
+      document.querySelectorAll("[data-tz-clock]").forEach((el) => {
+        el.textContent =
+          String(h).padStart(2, "0") + ":" + String(m).padStart(2, "0");
+      });
+      document.querySelectorAll<HTMLElement>("[data-tz-marker]").forEach((el) => {
+        el.style.left = (((h + m / 60) / 24) * 100).toFixed(2) + "%";
+      });
+    } catch {
+      /* Intl timezone unsupported: leave the static defaults */
+    }
+  }
+  tick();
+  setInterval(tick, 15000);
+</script>
