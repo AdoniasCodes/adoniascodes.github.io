@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adonias Nigussie · Growth and Performance Marketing</title>
+<meta name="description" content="Adonias Nigussie is a growth and performance marketer helping global teams turn paid media, SEO, and outbound into revenue. Remote from Addis Ababa, GMT+3.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1512;          /* espresso ink */
+    --bg-lift: #221c16;
+    --ink: #efe7db;         /* warm bone, not pure white */
+    --muted: #ad9e8b;
+    --line: rgba(239, 231, 219, 0.14);
+    --line-soft: rgba(239, 231, 219, 0.08);
+    --accent: #ee6a1e;      /* signal orange */
+    --accent-deep: #d2540e;
+    --on-accent: #1a1512;
+    --mono: "Fragment Mono", ui-monospace, monospace;
+    --sans: "Archivo", "Helvetica Neue", sans-serif;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --z-nav: 20;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: var(--on-accent); }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  .wrap {
+    max-width: 1140px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 48px);
+  }
+
+  h1, h2, h3 { text-wrap: balance; }
+
+  /* ---------- Nav ---------- */
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-nav);
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1.1rem;
+    gap: 1rem;
+  }
+
+  .wordmark {
+    font-weight: 640;
+    font-stretch: 112%;
+    letter-spacing: -0.01em;
+    font-size: 1.02rem;
+    text-decoration: none;
+  }
+
+  .wordmark em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: clamp(1.1rem, 3vw, 2.2rem);
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 180ms var(--ease-out);
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ---------- Hero ---------- */
+
+  .hero { padding-block: clamp(4rem, 9vw, 7.5rem) clamp(4rem, 8vw, 6.5rem); }
+
+  .statusline {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: clamp(2.2rem, 5vw, 3.5rem);
+  }
+
+  .statusline .dot {
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+    flex: none;
+  }
+
+  .statusline .clock { color: var(--ink); }
+  .statusline .sep { color: var(--line); user-select: none; }
+
+  .hero h1 {
+    font-size: clamp(2.7rem, 7.2vw, 5.4rem);
+    line-height: 1.02;
+    font-weight: 660;
+    font-stretch: 114%;
+    letter-spacing: -0.025em;
+    max-width: 13ch;
+  }
+
+  .hero h1 .tail { color: var(--accent); }
+
+  .hero-lower {
+    margin-top: clamp(2.4rem, 5vw, 3.6rem);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: end;
+  }
+
+  .hero-sub {
+    color: var(--muted);
+    max-width: 54ch;
+    text-wrap: pretty;
+  }
+
+  .hero-sub strong { color: var(--ink); font-weight: 540; }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.9rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    padding: 0.78em 1.55em;
+    border-radius: 2px;
+    transition: background-color 180ms var(--ease-out), color 180ms var(--ease-out), border-color 180ms var(--ease-out);
+    cursor: pointer;
+  }
+
+  .btn-solid { background: var(--accent); color: var(--on-accent); }
+  .btn-solid:hover { background: var(--accent-deep); }
+
+  .btn-line {
+    border: 1px solid var(--line);
+    color: var(--ink);
+  }
+
+  .btn-line:hover { border-color: var(--accent); color: var(--accent); }
+
+  .btn svg { flex: none; }
+
+  /* Overlap chart: the one piece of "dashboard" allowed to be literal */
+
+  .overlap {
+    border: 1px solid var(--line);
+    padding: 1.3rem 1.4rem 1.1rem;
+    max-width: 430px;
+    width: 100%;
+  }
+
+  .overlap figcaption {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.1rem;
+  }
+
+  .ol-rows { position: relative; }
+
+  .ol-row {
+    display: grid;
+    grid-template-columns: 7.2em 1fr;
+    align-items: center;
+    gap: 0.9em;
+  }
+
+  .ol-row + .ol-row { margin-top: 0.7rem; }
+
+  .ol-row span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .ol-bar {
+    height: 10px;
+    background-size: calc(100% / 24) 100%;
+    position: relative;
+  }
+
+  /* US CST 09:00 to 17:00 is 18:00 to 02:00 in Addis Ababa */
+  .ol-us {
+    background-image:
+      linear-gradient(90deg, var(--bg) 0 1px, transparent 1px),
+      linear-gradient(90deg,
+        var(--accent) 0 8.33%,
+        var(--line-soft) 8.33% 75%,
+        var(--accent) 75% 100%);
+  }
+
+  /* EU CET 09:00 to 17:00 is 11:00 to 19:00 in Addis Ababa */
+  .ol-eu {
+    background-image:
+      linear-gradient(90deg, var(--bg) 0 1px, transparent 1px),
+      linear-gradient(90deg,
+        var(--line-soft) 0 45.8%,
+        rgba(239, 231, 219, 0.44) 45.8% 79.2%,
+        var(--line-soft) 79.2% 100%);
+  }
+
+  .ol-bar { background-repeat: repeat-x, no-repeat; }
+  .ol-eu, .ol-us { background-size: calc(100% / 24) 100%, 100% 100%; }
+
+  .now-marker {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    width: 2px;
+    background: var(--ink);
+    left: 50%;
+    pointer-events: none;
+  }
+
+  .now-marker::after {
+    content: "now";
+    position: absolute;
+    top: -1.15rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+
+  .ol-scale {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.55rem;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--muted);
+  }
+
+  @media (min-width: 900px) {
+    .hero-lower { grid-template-columns: minmax(0, 1.25fr) minmax(340px, 1fr); }
+    .overlap { justify-self: end; }
+  }
+
+  /* ---------- Metrics ledger ---------- */
+
+  .metrics {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .metric {
+    padding-block: 2.1rem;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .metric:first-child { border-top: 0; }
+
+  .metric-value {
+    font-family: var(--mono);
+    font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+    line-height: 1.1;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .metric-value .unit { color: var(--accent); }
+
+  .metric-label {
+    margin-top: 0.65rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+    max-width: 30ch;
+    text-wrap: pretty;
+  }
+
+  @media (min-width: 640px) {
+    .metrics-grid { grid-template-columns: 1fr 1fr; column-gap: 2.4rem; }
+    .metric:nth-child(2) { border-top: 0; }
+  }
+
+  @media (min-width: 1024px) {
+    .metrics-grid { grid-template-columns: repeat(4, 1fr); column-gap: 0; }
+    .metric { border-top: 0; padding-inline: 1.7rem; }
+    .metric + .metric { border-left: 1px solid var(--line-soft); }
+    .metric:first-child { padding-left: 0; }
+    .metric:last-child { padding-right: 0; }
+  }
+
+  /* ---------- Selected work ---------- */
+
+  .work { padding-block: clamp(4.5rem, 9vw, 7.5rem) clamp(4rem, 8vw, 6rem); }
+
+  .work-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .work-head h2 {
+    font-size: clamp(1.9rem, 4.2vw, 3rem);
+    font-weight: 640;
+    font-stretch: 112%;
+    letter-spacing: -0.02em;
+  }
+
+  .work-head .count {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .work-list { list-style: none; }
+
+  .work-row {
+    display: block;
+    text-decoration: none;
+    border-top: 1px solid var(--line);
+    padding-block: 1.7rem;
+  }
+
+  .work-list li:last-child .work-row { border-bottom: 1px solid var(--line); }
+
+  .work-row-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "tag    arrow"
+      "title  arrow"
+      "blurb  arrow";
+    column-gap: 1.5rem;
+    align-items: center;
+  }
+
+  .work-tag {
+    grid-area: tag;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.55rem;
+    transition: color 200ms var(--ease-out);
+  }
+
+  .work-title {
+    grid-area: title;
+    font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+    font-weight: 600;
+    font-stretch: 108%;
+    letter-spacing: -0.012em;
+    line-height: 1.2;
+    transition: color 200ms var(--ease-out);
+  }
+
+  .work-blurb {
+    grid-area: blurb;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    max-width: 52ch;
+    font-size: 0.97rem;
+  }
+
+  .work-arrow {
+    grid-area: arrow;
+    color: var(--muted);
+    transition: color 200ms var(--ease-out), transform 260ms var(--ease-out);
+  }
+
+  .work-row:hover .work-title,
+  .work-row:focus-visible .work-title { color: var(--accent); }
+  .work-row:hover .work-tag { color: var(--ink); }
+  .work-row:hover .work-arrow,
+  .work-row:focus-visible .work-arrow {
+    color: var(--accent);
+    transform: translate(4px, -4px);
+  }
+
+  @media (min-width: 820px) {
+    .work-row-inner {
+      grid-template-columns: 9.5rem minmax(0, 1fr) auto;
+      grid-template-areas:
+        "tag title arrow"
+        "tag blurb arrow";
+      align-items: baseline;
+    }
+    .work-tag { margin-bottom: 0; }
+    .work-arrow { align-self: center; }
+  }
+
+  /* ---------- Testimonial ---------- */
+
+  .testimonial { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(5rem, 10vw, 8rem); }
+
+  .testimonial blockquote {
+    max-width: 46ch;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .testimonial .mark {
+    display: block;
+    width: 9px;
+    height: 9px;
+    background: var(--accent);
+    margin: 0 auto 2.2rem;
+  }
+
+  .testimonial p {
+    font-size: clamp(1.35rem, 3vw, 1.95rem);
+    line-height: 1.42;
+    font-weight: 460;
+    font-style: italic;
+    font-stretch: 104%;
+    letter-spacing: -0.008em;
+    text-wrap: pretty;
+  }
+
+  .testimonial cite {
+    display: block;
+    margin-top: 1.9rem;
+    font-style: normal;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .testimonial cite b { color: var(--ink); font-weight: 400; }
+
+  /* ---------- Footer CTA: the drench ---------- */
+
+  .contact {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .contact-inner { padding-block: clamp(4.5rem, 9vw, 7rem); }
+
+  .contact h2 {
+    font-size: clamp(2.1rem, 5.5vw, 3.7rem);
+    line-height: 1.04;
+    font-weight: 680;
+    font-stretch: 114%;
+    letter-spacing: -0.025em;
+    max-width: 16ch;
+  }
+
+  .contact-row {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.4rem 2.2rem;
+  }
+
+  .btn-dark {
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  .btn-dark:hover { background: #2b231c; }
+
+  .contact-link {
+    font-family: var(--mono);
+    font-size: 0.92rem;
+    color: var(--on-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: opacity 180ms var(--ease-out);
+  }
+
+  .contact-link:hover { opacity: 0.68; }
+
+  .contact :focus-visible { outline-color: var(--bg); }
+
+  .footer-meta {
+    border-top: 1px solid var(--line);
+    padding-block: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+  }
+
+  /* ---------- Motion ---------- */
+
+  /* Everything is visible by default. JS adds .anim to <html>, which arms
+     the entrance choreography and scroll reveals. */
+
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .anim .hero .statusline,
+  .anim .hero h1,
+  .anim .hero .hero-sub-block,
+  .anim .hero .overlap {
+    animation: rise-in 0.75s var(--ease-out) both;
+  }
+
+  .anim .hero h1 { animation-delay: 0.08s; }
+  .anim .hero .hero-sub-block { animation-delay: 0.2s; }
+  .anim .hero .overlap { animation-delay: 0.32s; }
+
+  .anim [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+  }
+
+  .anim [data-reveal].in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .anim .metric.in:nth-child(2) { transition-delay: 90ms; }
+  .anim .metric.in:nth-child(3) { transition-delay: 180ms; }
+  .anim .metric.in:nth-child(4) { transition-delay: 270ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .anim .hero .statusline,
+    .anim .hero h1,
+    .anim .hero .hero-sub-block,
+    .anim .hero .overlap { animation: none; }
+    .anim [data-reveal] { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="wordmark" href="#top">Adonias Nigussie<em>.</em></a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap" aria-label="Introduction">
+    <p class="statusline">
+      <span class="dot" aria-hidden="true"></span>
+      <span>ADDIS ABABA</span>
+      <span class="clock" id="clock">--:--</span>
+      <span>GMT+3</span>
+      <span class="sep" aria-hidden="true">/</span>
+      <span>AVAILABLE FOR NEW ROLES</span>
+    </p>
+
+    <h1>Growth marketing that <span class="tail">pays for itself.</span></h1>
+
+    <div class="hero-lower">
+      <div class="hero-sub-block">
+        <p class="hero-sub">I'm <strong>Adonias Nigussie</strong>, a growth and performance marketer helping global teams turn paid media, SEO, and outbound into revenue. Working remotely from Addis Ababa (GMT+3) with US and EU business-hours overlap.</p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="#work">See my work
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn-line" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <figure class="overlap">
+        <figcaption>Working-hours overlap · Addis Ababa time</figcaption>
+        <div class="ol-rows">
+          <div class="ol-row">
+            <span>US CST 9 to 5</span>
+            <div class="ol-bar ol-us" role="img" aria-label="US Central business hours map to 6 PM to 2 AM Addis Ababa time"></div>
+          </div>
+          <div class="ol-row">
+            <span>EU CET 9 to 5</span>
+            <div class="ol-bar ol-eu" role="img" aria-label="EU Central business hours map to 11 AM to 7 PM Addis Ababa time"></div>
+          </div>
+          <div class="now-marker" id="nowMarker" aria-hidden="true"></div>
+        </div>
+        <div class="ol-scale" aria-hidden="true">
+          <span>00</span><span>06</span><span>12</span><span>18</span><span>24</span>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="metrics" aria-label="Results">
+    <div class="wrap metrics-grid">
+      <div class="metric" data-reveal>
+        <p class="metric-value"><span data-count="300">300</span><span class="unit">%</span></p>
+        <p class="metric-label">client lead-generation lift across 30+ paid campaigns</p>
+      </div>
+      <div class="metric" data-reveal>
+        <p class="metric-value"><span data-count="1000" data-format="comma">1,000</span><span class="unit">+</span></p>
+        <p class="metric-label">outbound leads per month at 23% open, 6% reply</p>
+      </div>
+      <div class="metric" data-reveal>
+        <p class="metric-value">100 to <span data-count="500" data-start="100">500</span></p>
+        <p class="metric-label">B2B customers grown in 12 months</p>
+      </div>
+      <div class="metric" data-reveal>
+        <p class="metric-value"><span data-count="70">70</span><span class="unit">%</span></p>
+        <p class="metric-label">execution time cut with AI-driven workflows</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="work wrap" id="work">
+    <div class="work-head" data-reveal>
+      <h2>Selected work</h2>
+      <p class="count">4 CASE STUDIES · 2022 TO NOW</p>
+    </div>
+    <ul class="work-list">
+      <li data-reveal>
+        <a class="work-row" href="#contact">
+          <span class="work-row-inner">
+            <span class="work-tag">Outbound</span>
+            <span class="work-title">Pairing.dev</span>
+            <span class="work-blurb">An outbound engine that books itself.</span>
+            <span class="work-arrow" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </span>
+          </span>
+        </a>
+      </li>
+      <li data-reveal>
+        <a class="work-row" href="#contact">
+          <span class="work-row-inner">
+            <span class="work-tag">SEO</span>
+            <span class="work-title">Lifecare Pharmaceuticals</span>
+            <span class="work-blurb">SEO retainer with compounding organic growth.</span>
+            <span class="work-arrow" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </span>
+          </span>
+        </a>
+      </li>
+      <li data-reveal>
+        <a class="work-row" href="#contact">
+          <span class="work-row-inner">
+            <span class="work-tag">Paid media</span>
+            <span class="work-title">Eagle Eye Business Group</span>
+            <span class="work-blurb">Paid media across 30+ campaigns.</span>
+            <span class="work-arrow" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </span>
+          </span>
+        </a>
+      </li>
+      <li data-reveal>
+        <a class="work-row" href="#contact">
+          <span class="work-row-inner">
+            <span class="work-tag">Full funnel</span>
+            <span class="work-title">Jaktech</span>
+            <span class="work-blurb">From 100 to 500 B2B customers in a year.</span>
+            <span class="work-arrow" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="testimonial wrap" id="about" aria-label="Client testimonial">
+    <blockquote data-reveal>
+      <span class="mark" aria-hidden="true"></span>
+      <p>&ldquo;Adonias has helped us attract over 400 new clients through SEO and social media in just a span of 1 year and 3 months.&rdquo;</p>
+      <cite><b>SMS Ethiopia</b> · SEO and social retainer client</cite>
+    </blockquote>
+  </section>
+
+</main>
+
+<footer class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <h2 data-reveal>Have a growth problem worth solving?</h2>
+    <div class="contact-row" data-reveal>
+      <a class="btn btn-dark" href="mailto:adoniasnigussie@gmail.com">Let's talk
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a class="contact-link" href="mailto:adoniasnigussie@gmail.com">adoniasnigussie@gmail.com</a>
+      <a class="contact-link" href="#" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-meta">
+      <span>&copy; 2026 Adonias Nigussie</span>
+      <span>Addis Ababa · GMT+3 · Remote worldwide</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasIO = "IntersectionObserver" in window;
+
+  /* ----- Live Addis Ababa clock + now marker ----- */
+
+  function tick() {
+    try {
+      var fmt = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Africa/Addis_Ababa",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+      });
+      var parts = fmt.formatToParts(new Date());
+      var h = 0, m = 0;
+      parts.forEach(function (p) {
+        if (p.type === "hour") h = parseInt(p.value, 10);
+        if (p.type === "minute") m = parseInt(p.value, 10);
+      });
+      var clock = document.getElementById("clock");
+      if (clock) {
+        clock.textContent =
+          (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m);
+      }
+      var marker = document.getElementById("nowMarker");
+      if (marker) {
+        marker.style.left = (((h + m / 60) / 24) * 100).toFixed(2) + "%";
+      }
+    } catch (e) { /* Intl timezone unsupported: leave defaults */ }
+  }
+  tick();
+  setInterval(tick, 15000);
+
+  /* ----- Count-up metrics ----- */
+
+  function formatValue(n, mode) {
+    return mode === "comma" ? n.toLocaleString("en-US") : String(n);
+  }
+
+  function countUp(el) {
+    var target = parseInt(el.getAttribute("data-count"), 10);
+    var start = parseInt(el.getAttribute("data-start") || "0", 10);
+    var mode = el.getAttribute("data-format");
+    var duration = 1200;
+    var t0 = null;
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 5); /* ease-out-quint */
+      var val = Math.round(start + (target - start) * eased);
+      el.textContent = formatValue(val, mode);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ----- Entrance + scroll reveals ----- */
+  /* Content is fully visible without JS; .anim arms the choreography. */
+
+  if (!reduced && hasIO) {
+    document.documentElement.classList.add("anim");
+
+    var counted = false;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("in");
+        if (!counted && entry.target.closest(".metrics")) {
+          counted = true;
+          document.querySelectorAll("[data-count]").forEach(countUp);
+        }
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+
+    document.querySelectorAll("[data-reveal]").forEach(function (el) {
+      io.observe(el);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
