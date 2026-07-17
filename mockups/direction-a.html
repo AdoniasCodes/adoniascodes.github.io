@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adonias Nigussie · Growth &amp; Performance Marketing</title>
+<meta name="description" content="Adonias Nigussie is a growth and performance marketer helping global teams turn paid media, SEO, and outbound into revenue. Remote from Addis Ababa (GMT+3).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f0e4;
+    --paper-deep: #ede4d2;
+    --ink: #26211a;
+    --ink-soft: #57503f;
+    --rule: rgba(38, 33, 26, 0.22);
+    --rule-strong: #26211a;
+    --oxblood: #6e2a22;
+    --oxblood-deep: #4e1d17;
+    --oxblood-ghost: rgba(110, 42, 34, 0.08);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Spectral", Georgia, serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--oxblood); color: var(--paper); }
+
+  :focus-visible {
+    outline: 2px solid var(--oxblood);
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3 { text-wrap: balance; }
+
+  .wrap {
+    max-width: 71rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Masthead ---------- */
+
+  .masthead { padding-top: clamp(1.1rem, 2.5vw, 1.75rem); }
+
+  .masthead-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 0.85rem;
+  }
+
+  .wordmark {
+    font-family: "Gloock", Georgia, serif;
+    font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+
+  .masthead nav {
+    display: flex;
+    gap: clamp(1.1rem, 3vw, 2.25rem);
+  }
+
+  .masthead nav a {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    padding-block: 0.25rem;
+    border-bottom: 2px solid transparent;
+    transition: color 180ms var(--ease-out), border-color 180ms var(--ease-out);
+  }
+
+  .masthead nav a:hover { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+
+  /* Classic newspaper double rule */
+  .double-rule {
+    border: 0;
+    border-top: 3px solid var(--rule-strong);
+    position: relative;
+  }
+  .double-rule::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 5px;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero { padding: clamp(3.5rem, 9vw, 7.5rem) 0 clamp(3rem, 7vw, 5.5rem); }
+
+  .hero h1 {
+    font-family: "Gloock", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2.8rem, 7.6vw, 5.6rem);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    max-width: 15ch;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--oxblood);
+  }
+
+  .hero-body {
+    margin-top: clamp(2.25rem, 5vw, 3.5rem);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .hero-body-inner { max-width: 34rem; }
+
+  .hero-body-inner::before {
+    content: "";
+    display: block;
+    width: 4.5rem;
+    border-top: 3px solid var(--oxblood);
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-sub {
+    font-size: clamp(1.125rem, 1.8vw, 1.3125rem);
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .hero-cta {
+    margin-top: 2.1rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--oxblood);
+    color: var(--paper);
+    font-family: "Spectral", Georgia, serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    padding: 0.85rem 1.9rem;
+    border: 1px solid var(--oxblood);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 180ms var(--ease-out), border-color 180ms var(--ease-out);
+  }
+
+  .btn:hover { background: var(--oxblood-deep); border-color: var(--oxblood-deep); }
+
+  .link-quiet {
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+    transition: color 180ms var(--ease-out), text-decoration-color 180ms var(--ease-out);
+  }
+
+  .link-quiet:hover { color: var(--oxblood); text-decoration-color: var(--oxblood); }
+
+  /* ---------- Metrics ledger ---------- */
+
+  .ledger {
+    background: var(--paper-deep);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .ledger-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .ledger-cell {
+    padding: clamp(1.8rem, 3.5vw, 2.75rem) clamp(1rem, 2.5vw, 2rem);
+  }
+
+  .ledger-cell + .ledger-cell { border-left: 1px solid var(--rule); }
+
+  .ledger-cell strong {
+    display: block;
+    font-family: "Gloock", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 3.6vw, 2.9rem);
+    line-height: 1.1;
+    color: var(--oxblood);
+    font-variant-numeric: lining-nums;
+  }
+
+  .ledger-cell span {
+    display: block;
+    margin-top: 0.65rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 24ch;
+  }
+
+  /* ---------- Selected work index ---------- */
+
+  .work { padding: clamp(4rem, 9vw, 7rem) 0 clamp(3.5rem, 7vw, 5.5rem); }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .section-head h2 {
+    font-family: "Gloock", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .section-head::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid var(--rule);
+    transform: translateY(-0.35em);
+  }
+
+  .index { list-style: none; border-top: 1px solid var(--rule); }
+
+  .index li { border-bottom: 1px solid var(--rule); }
+
+  .index a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: clamp(1.4rem, 3vw, 2rem) clamp(0.5rem, 1.5vw, 1rem);
+    text-decoration: none;
+    transition: background 200ms var(--ease-out);
+  }
+
+  .index a:hover { background: var(--oxblood-ghost); }
+
+  .index h3 {
+    font-family: "Gloock", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+    line-height: 1.2;
+    transition: color 200ms var(--ease-out);
+  }
+
+  .index a:hover h3 { color: var(--oxblood); }
+
+  .index p {
+    margin-top: 0.45rem;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    max-width: 58ch;
+  }
+
+  .index .arrow {
+    font-family: "Spectral", Georgia, serif;
+    font-size: 1.4rem;
+    color: var(--oxblood);
+    transition: transform 200ms var(--ease-out);
+  }
+
+  .index a:hover .arrow { transform: translateX(6px); }
+
+  /* ---------- Testimonial ---------- */
+
+  .testimonial {
+    padding: clamp(4rem, 9vw, 7rem) 0;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+  }
+
+  .testimonial blockquote {
+    max-width: 46rem;
+    margin-inline: auto;
+    position: relative;
+  }
+
+  .testimonial blockquote::before {
+    content: "\201C";
+    display: block;
+    font-family: "Gloock", Georgia, serif;
+    font-size: clamp(4rem, 9vw, 6rem);
+    line-height: 0.6;
+    color: var(--oxblood);
+    margin-bottom: 1.2rem;
+  }
+
+  .testimonial blockquote p {
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+  }
+
+  .testimonial cite {
+    display: inline-block;
+    margin-top: 1.8rem;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--oxblood);
+  }
+
+  /* ---------- Footer CTA ---------- */
+
+  .colophon {
+    background: var(--oxblood-deep);
+    color: var(--paper);
+    padding: clamp(4.5rem, 10vw, 7.5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .colophon h2 {
+    font-family: "Gloock", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2.2rem, 5.6vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
+  }
+
+  .colophon-cta {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+  }
+
+  .btn-invert {
+    background: var(--paper);
+    color: var(--oxblood-deep);
+    border-color: var(--paper);
+  }
+
+  .btn-invert:hover { background: var(--paper-deep); border-color: var(--paper-deep); }
+
+  .colophon-email {
+    font-size: 1.0625rem;
+    color: var(--paper);
+    text-decoration: underline;
+    text-decoration-color: rgba(246, 240, 228, 0.4);
+    text-underline-offset: 5px;
+    transition: text-decoration-color 180ms var(--ease-out);
+  }
+
+  .colophon-email:hover { text-decoration-color: var(--paper); }
+
+  .colophon-meta {
+    margin-top: clamp(3.5rem, 7vw, 5rem);
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(246, 240, 228, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: rgba(246, 240, 228, 0.75);
+  }
+
+  .colophon-meta a {
+    color: var(--paper);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(246, 240, 228, 0.4);
+    padding-bottom: 2px;
+    transition: border-color 180ms var(--ease-out);
+  }
+
+  .colophon-meta a:hover { border-color: var(--paper); }
+
+  /* ---------- Motion ---------- */
+
+  .js .rise {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+  }
+
+  .js .rise.in { opacity: 1; transform: none; }
+
+  .js .rise-2 { transition-delay: 120ms; }
+  .js .rise-3 { transition-delay: 240ms; }
+  .js .rise-4 { transition-delay: 360ms; }
+
+  /* Hero entrance */
+  @keyframes hero-up {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .js .hero h1,
+  .js .hero-body-inner,
+  .js .masthead-row {
+    animation: hero-up 850ms var(--ease-out) both;
+  }
+
+  .js .masthead-row { animation-duration: 650ms; }
+  .js .hero h1 { animation-delay: 120ms; }
+  .js .hero-body-inner { animation-delay: 320ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .rise,
+    .js .hero h1,
+    .js .hero-body-inner,
+    .js .masthead-row {
+      animation: none;
+      transition: none;
+      opacity: 1;
+      transform: none;
+    }
+    .index a:hover .arrow { transform: none; }
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 860px) {
+    .ledger-grid { grid-template-columns: 1fr 1fr; }
+    .ledger-cell:nth-child(3) { border-left: 0; }
+    .ledger-cell:nth-child(n + 3) { border-top: 1px solid var(--rule); }
+  }
+
+  @media (max-width: 640px) {
+    .hero-body { justify-content: flex-start; }
+
+    .masthead-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+
+    .ledger-grid { grid-template-columns: 1fr; }
+    .ledger-cell + .ledger-cell { border-left: 0; border-top: 1px solid var(--rule); }
+    .ledger-cell { padding-inline: 0; }
+    .ledger .wrap { padding-inline: clamp(1.25rem, 4vw, 3rem); }
+
+    .index a { grid-template-columns: 1fr; }
+    .index .arrow { display: none; }
+
+    .colophon-meta { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');</script>
+
+<header class="masthead wrap">
+  <div class="masthead-row">
+    <a class="wordmark" href="#top">Adonias Nigussie</a>
+    <nav aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+  <hr class="double-rule">
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <h1>Growth marketing that <em>pays for itself.</em></h1>
+    <div class="hero-body" id="about">
+      <div class="hero-body-inner">
+        <p class="hero-sub">I'm Adonias Nigussie, a growth and performance marketer helping global teams turn paid media, SEO, and outbound into revenue. Working remotely from Addis Ababa (GMT+3) with US and EU business-hours overlap.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#work">See my work</a>
+          <a class="link-quiet" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ledger" aria-label="Results at a glance">
+    <div class="wrap">
+      <div class="ledger-grid">
+        <div class="ledger-cell rise">
+          <strong>300%</strong>
+          <span>client lead-generation lift across 30+ paid campaigns</span>
+        </div>
+        <div class="ledger-cell rise rise-2">
+          <strong>1,000+</strong>
+          <span>outbound leads per month at 23% open, 6% reply</span>
+        </div>
+        <div class="ledger-cell rise rise-3">
+          <strong>100 to 500</strong>
+          <span>B2B customers grown in 12 months</span>
+        </div>
+        <div class="ledger-cell rise rise-4">
+          <strong>70%</strong>
+          <span>execution time cut with AI-driven workflows</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="work wrap" id="work">
+    <div class="section-head rise">
+      <h2>Selected work</h2>
+    </div>
+    <ul class="index">
+      <li class="rise">
+        <a href="#contact">
+          <div>
+            <h3>Pairing.dev</h3>
+            <p>An outbound engine that books itself.</p>
+          </div>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li class="rise">
+        <a href="#contact">
+          <div>
+            <h3>Lifecare Pharmaceuticals</h3>
+            <p>SEO retainer with compounding organic growth.</p>
+          </div>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li class="rise">
+        <a href="#contact">
+          <div>
+            <h3>Eagle Eye Business Group</h3>
+            <p>Paid media across 30+ campaigns.</p>
+          </div>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li class="rise">
+        <a href="#contact">
+          <div>
+            <h3>Jaktech</h3>
+            <p>From 100 to 500 B2B customers in a year.</p>
+          </div>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="testimonial wrap">
+    <blockquote class="rise">
+      <p>Adonias has helped us attract over 400 new clients through SEO and social media in just a span of 1 year and 3 months.</p>
+      <cite>SMS Ethiopia</cite>
+    </blockquote>
+  </section>
+
+</main>
+
+<footer class="colophon" id="contact">
+  <div class="wrap">
+    <h2 class="rise">Have a growth problem worth solving?</h2>
+    <div class="colophon-cta rise rise-2">
+      <a class="btn btn-invert" href="mailto:adoniasnigussie@gmail.com">Let's talk</a>
+      <a class="colophon-email" href="mailto:adoniasnigussie@gmail.com">adoniasnigussie@gmail.com</a>
+    </div>
+    <div class="colophon-meta">
+      <span>Adonias Nigussie · Addis Ababa, Ethiopia · GMT+3</span>
+      <a href="https://www.linkedin.com/in/adoniasnigussie" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.rise');
+    if (reduced || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

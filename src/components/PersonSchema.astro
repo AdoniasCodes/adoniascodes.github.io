@@ -1,0 +1,44 @@
+---
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://adoniasnigussie.netlify.app/#adonias",
+  name: "Adonias Nigussie",
+  jobTitle: "Growth & Performance Marketer",
+  description:
+    "Growth and performance marketer helping global teams turn paid media, SEO, and outbound into revenue. Based in Addis Ababa, Ethiopia, working remotely with US and EU teams.",
+  url: "https://adoniasnigussie.netlify.app/",
+  email: "mailto:adoniasnigussie@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Addis Ababa",
+    addressCountry: "ET",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Addis Ababa University",
+  },
+  knowsAbout: [
+    "Growth Marketing",
+    "Performance Marketing",
+    "Customer Acquisition",
+    "Cold Email Outbound",
+    "Paid Social Advertising",
+    "Google Ads",
+    "Meta Ads",
+    "TikTok Ads",
+    "Search Engine Optimization",
+    "Content Strategy",
+    "Conversion Rate Optimization",
+    "A/B Testing",
+    "Marketing Analytics",
+    "Google Analytics 4",
+    "HubSpot",
+    "Marketing Automation",
+    "AI Marketing Workflows",
+  ],
+  sameAs: ["https://www.linkedin.com/in/adoniasn/"],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(person)} />

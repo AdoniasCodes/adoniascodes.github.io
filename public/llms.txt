@@ -1,0 +1,18 @@
+# Adonias Nigussie
+
+> Growth and performance marketer based in Addis Ababa, Ethiopia (GMT+3), working remotely with US and EU teams. Specialties: outbound customer acquisition, paid media (Meta, Google, TikTok), SEO and content strategy, and AI-driven marketing workflows. Open to international remote roles and freelance engagements.
+
+Key verified results: 1,000+ outbound leads per month at 23% open and 6% reply (Pairing.dev, Estonia); up to 300% client lead-generation lift across 30+ paid campaigns (Eagle Eye Business Group); a B2B product scaled from 100 to 500 customers in 12 months (Jaktech); top-3 Google rankings for 14 long-tail keywords and a ~70% client sales lift (Recognise Designs, UK); ~70% campaign execution time cut via n8n and LLM automation.
+
+## Work
+
+- [Pairing.dev case study](/work/pairing-dev/): outbound engine, 1,000+ leads/month across multiple B2B SaaS products
+- [Eagle Eye case study](/work/eagle-eye/): 30+ paid campaigns, up to 300% lead-generation lift
+- [Jaktech case study](/work/jaktech/): 100 to 500 B2B customers in one year
+- [Recognise Designs case study](/work/recognise-designs/): UK SEO engagement, top-3 rankings, ~70% sales lift
+- [Lifecare Pharmaceuticals case study](/work/lifecare/): in-progress SEO engagement documented from zero
+
+## Pages
+
+- [About](/about/): background since 2019, 40+ clients, 30+ websites shipped
+- [Contact](/contact/): adoniasnigussie@gmail.com, linkedin.com/in/adoniasn

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Adonias Nigussie is a growth and performance marketer helping global teams turn paid media, SEO, and outbound into revenue. Remote from Addis Ababa, GMT+3.">
+<meta name="color-scheme" content="light">
+<title>Adonias Nigussie · Growth &amp; Performance Marketer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5EDDC;
+    --bg-deep: #ECDFC4;
+    --ink: #221A12;
+    --ink-soft: #4A3E2E;
+    --tomato: #D9411E;
+    --marigold: #F2A93B;
+    --cobalt: #2438B8;
+    --line: 3px solid var(--ink);
+    --line-thin: 2px solid var(--ink);
+    --shadow-ink: 6px 6px 0 var(--ink);
+    --shadow-tomato: 6px 6px 0 var(--tomato);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --z-nav: 20;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .display {
+    font-family: "Archivo Black", "Archivo", sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3 { text-wrap: balance; }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 3px solid var(--cobalt);
+    outline-offset: 3px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 30;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 0.6rem 1rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  .wrap {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+  }
+
+  /* ---------- Nav ---------- */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-nav);
+    background: var(--bg);
+    border-bottom: var(--line);
+  }
+  .site-nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    padding-block: 0.85rem;
+  }
+  .wordmark {
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  .site-nav ul {
+    display: flex;
+    gap: clamp(0.9rem, 3vw, 2rem);
+    list-style: none;
+  }
+  .site-nav ul a {
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.18s ease-out;
+  }
+  .site-nav ul a:hover { border-bottom-color: var(--tomato); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-block: clamp(3.5rem, 9vw, 7rem) clamp(3.5rem, 8vw, 6rem); }
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 8vw, 5.4rem);
+    line-height: 1.02;
+    max-width: 13ch;
+    text-transform: uppercase;
+  }
+  .uline {
+    background-image: linear-gradient(var(--tomato), var(--tomato));
+    background-size: 100% 0.14em;
+    background-position: 0 94%;
+    background-repeat: no-repeat;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .hero-sub {
+    max-width: 56ch;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .hero-sub strong { color: var(--ink); }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border: var(--line);
+    border-radius: 2px;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+    box-shadow: var(--shadow-tomato);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    box-shadow: 6px 6px 0 var(--bg-deep);
+  }
+  .btn:hover, .btn:focus-visible {
+    transform: translate(3px, 3px);
+  }
+  .btn-primary:hover, .btn-primary:focus-visible { box-shadow: 3px 3px 0 var(--tomato); }
+  .btn-secondary:hover, .btn-secondary:focus-visible { box-shadow: 3px 3px 0 var(--bg-deep); }
+
+  .sticker {
+    align-self: flex-start;
+    transform: rotate(-2deg);
+    background: var(--marigold);
+    border: var(--line);
+    border-radius: 2px;
+    box-shadow: var(--shadow-ink);
+    padding: 0.7rem 1.1rem;
+    line-height: 1.35;
+  }
+  .sticker .place {
+    display: block;
+    font-family: "Archivo Black", sans-serif;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .sticker .zone {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  @media (min-width: 60rem) {
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "title sticker"
+        "sub   sticker"
+        "cta   sticker";
+      column-gap: 3rem;
+    }
+    .hero h1 { grid-area: title; }
+    .hero-sub { grid-area: sub; }
+    .hero-actions { grid-area: cta; }
+    .sticker {
+      grid-area: sticker;
+      align-self: start;
+      margin-top: 0.75rem;
+      transform: rotate(4deg);
+    }
+  }
+
+  /* ---------- Ticker ---------- */
+  .ticker {
+    border-top: var(--line);
+    border-bottom: var(--line);
+    background: var(--marigold);
+    overflow: hidden;
+    padding-block: 0.7rem;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+  .ticker-track span {
+    flex: none;
+    font-family: "Archivo Black", sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    padding-right: 1.5rem;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track { animation: none; }
+  }
+
+  /* ---------- Metrics ---------- */
+  .metrics {
+    background: var(--ink);
+    color: var(--bg);
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .metric {
+    padding: 1.6rem 0.25rem;
+    border-top: 2px solid #4B4030;
+  }
+  .metric:first-child { border-top: none; }
+  .metric .stat {
+    display: block;
+    font-family: "Archivo Black", sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    line-height: 1.05;
+    color: var(--marigold);
+  }
+  .metric p {
+    margin-top: 0.5rem;
+    max-width: 30ch;
+    font-size: 0.98rem;
+    color: #E9DFC9;
+  }
+  @media (min-width: 46rem) {
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .metric { padding: 2.2rem 2.4rem; border-top: 2px solid #4B4030; border-left: 2px solid #4B4030; }
+    .metric:nth-child(1), .metric:nth-child(2) { border-top: none; }
+    .metric:nth-child(odd) { border-left: none; padding-left: 0; }
+  }
+
+  /* ---------- Work ---------- */
+  .work { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+  .section-title {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    text-transform: uppercase;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+  .section-title .uline { background-size: 100% 0.16em; }
+
+  .work-list { list-style: none; border-bottom: var(--line); }
+  .work-row {
+    border-top: var(--line);
+    padding: 1.5rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    transition: background-color 0.18s ease-out, padding-left 0.25s var(--ease-out);
+  }
+  .work-row:hover { background: var(--bg-deep); }
+  .work-row .tag {
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--marigold);
+    border: var(--line-thin);
+    border-radius: 2px;
+    padding: 0.15rem 0.5rem;
+  }
+  .work-row h3 {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.25rem, 2.6vw, 1.9rem);
+    line-height: 1.15;
+  }
+  .work-row h3 .co { color: var(--tomato); }
+  .work-row p { color: var(--ink-soft); max-width: 60ch; }
+  @media (min-width: 60rem) {
+    .work-row {
+      display: grid;
+      grid-template-columns: 10rem 1fr;
+      column-gap: 2.5rem;
+      align-items: start;
+      padding: 2rem 1rem;
+    }
+    .work-row .tag { margin-top: 0.35rem; }
+    .work-row:nth-child(even) { padding-left: 4rem; }
+    .work-row:hover { padding-left: 2rem; }
+    .work-row:nth-child(even):hover { padding-left: 5rem; }
+  }
+
+  /* ---------- Testimonial ---------- */
+  .testimonial { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(4rem, 9vw, 7rem); }
+  .quote-block {
+    transform: rotate(-1deg);
+    background: var(--bg-deep);
+    border: var(--line);
+    border-radius: 2px;
+    box-shadow: var(--shadow-tomato);
+    padding: clamp(1.75rem, 5vw, 3.5rem);
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+  .quote-block blockquote p {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 600;
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+  .quote-block blockquote p::before { content: "\201C"; color: var(--tomato); }
+  .quote-block blockquote p::after { content: "\201D"; color: var(--tomato); }
+  .quote-block figcaption {
+    margin-top: 1.4rem;
+    font-size: 1rem;
+    font-weight: 700;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.12em;
+  }
+  .quote-block figcaption .role {
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Footer ---------- */
+  .footer-cta {
+    background: var(--cobalt);
+    color: var(--bg);
+    border-top: var(--line);
+    padding-block: clamp(4rem, 9vw, 7rem) 0;
+  }
+  .footer-cta h2 {
+    font-size: clamp(2.2rem, 6vw, 4.4rem);
+    text-transform: uppercase;
+    line-height: 1.05;
+    max-width: 16ch;
+  }
+  .footer-cta .footer-lead {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .btn-talk {
+    background: var(--marigold);
+    color: var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    align-self: flex-start;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+  }
+  .btn-talk:hover, .btn-talk:focus-visible { box-shadow: 3px 3px 0 var(--ink); }
+  .footer-links {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2.5rem;
+    font-weight: 600;
+  }
+  .footer-links a {
+    text-decoration-thickness: 3px;
+    text-underline-offset: 5px;
+    text-decoration-color: var(--marigold);
+  }
+  .footer-links a:hover { color: var(--marigold); }
+  .footer-base {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    border-top: 2px solid rgba(245, 237, 220, 0.35);
+    padding-block: 1.1rem;
+    font-size: 0.85rem;
+    color: #D8DCF5;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  @media (min-width: 60rem) {
+    .footer-cta .footer-lead {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 3rem;
+    }
+    .btn-talk { align-self: flex-end; margin-bottom: 0.5rem; }
+  }
+
+  /* ---------- Motion ---------- */
+  .js .rise {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s ease-out, transform 0.85s var(--ease-out);
+    transition-delay: var(--d, 0ms);
+  }
+  .js.loaded .rise { opacity: 1; transform: none; }
+
+  .will-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease-out, transform 0.7s var(--ease-out);
+    transition-delay: var(--d, 0ms);
+  }
+  .will-reveal.is-in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js .rise, .will-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .btn, .work-row, .site-nav ul a { transition: none; }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-nav">
+  <nav class="wrap" aria-label="Main">
+    <a class="wordmark display" href="#top">Adonias Nigussie</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <h1 id="hero-title" class="display rise" style="--d:0ms">Growth marketing that <span class="uline">pays for itself.</span></h1>
+      <p class="hero-sub rise" id="about" style="--d:120ms">I'm <strong>Adonias Nigussie</strong>, a growth and performance marketer helping global teams turn paid media, SEO, and outbound into revenue. Working remotely from Addis Ababa (GMT+3) with US and EU business-hours overlap.</p>
+      <div class="hero-actions rise" style="--d:240ms">
+        <a class="btn btn-primary" href="#work">See my work</a>
+        <a class="btn btn-secondary" href="#contact">Get in touch</a>
+      </div>
+      <p class="sticker rise" style="--d:340ms">
+        <span class="place">Addis Ababa &middot; GMT+3</span>
+        <span class="zone">US + EU business-hours overlap</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Paid media &#10038; SEO &#10038; Outbound &#10038; Email &#10038; CRO &#10038; Analytics &#10038; AI workflows &#10038; Funnels &#10038;</span>
+      <span>Paid media &#10038; SEO &#10038; Outbound &#10038; Email &#10038; CRO &#10038; Analytics &#10038; AI workflows &#10038; Funnels &#10038;</span>
+    </div>
+  </div>
+
+  <section class="metrics" aria-labelledby="metrics-title">
+    <h2 id="metrics-title" class="sr-only">Results</h2>
+    <div class="wrap metrics-grid">
+      <div class="metric" data-reveal style="--d:0ms">
+        <span class="stat">300%</span>
+        <p>client lead-generation lift across 30+ paid campaigns</p>
+      </div>
+      <div class="metric" data-reveal style="--d:90ms">
+        <span class="stat">1,000+</span>
+        <p>outbound leads per month at 23% open, 6% reply</p>
+      </div>
+      <div class="metric" data-reveal style="--d:180ms">
+        <span class="stat">100 to 500</span>
+        <p>B2B customers grown in 12 months</p>
+      </div>
+      <div class="metric" data-reveal style="--d:270ms">
+        <span class="stat">70%</span>
+        <p>execution time cut with AI-driven workflows</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <h2 id="work-title" class="section-title display" data-reveal>Selected <span class="uline">work</span></h2>
+      <ul class="work-list">
+        <li>
+          <article class="work-row" data-reveal>
+            <span class="tag">Outbound</span>
+            <div>
+              <h3><span class="co">Pairing.dev:</span> an outbound engine that books itself</h3>
+              <p>Cold email infrastructure, list building, and copy that fills the calendar without manual chasing.</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="work-row" data-reveal style="--d:70ms">
+            <span class="tag">SEO</span>
+            <div>
+              <h3><span class="co">Lifecare Pharmaceuticals:</span> SEO retainer with compounding organic growth</h3>
+              <p>Technical fixes plus a content engine, so every month of organic traffic builds on the last.</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="work-row" data-reveal style="--d:140ms">
+            <span class="tag">Paid media</span>
+            <div>
+              <h3><span class="co">Eagle Eye Business Group:</span> paid media across 30+ campaigns</h3>
+              <p>Full-funnel campaign management with creative testing and budget discipline at scale.</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="work-row" data-reveal style="--d:210ms">
+            <span class="tag">Growth</span>
+            <div>
+              <h3><span class="co">Jaktech:</span> from 100 to 500 B2B customers in a year</h3>
+              <p>A 5x customer base in 12 months, built on channel focus and relentless iteration.</p>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="testimonial" aria-labelledby="testimonial-title">
+    <h2 id="testimonial-title" class="sr-only">What clients say</h2>
+    <div class="wrap">
+      <figure class="quote-block" data-reveal>
+        <blockquote>
+          <p>Adonias has helped us attract over 400 new clients through SEO and social media in just a span of 1 year and 3 months.</p>
+        </blockquote>
+        <figcaption>SMS Ethiopia <span class="role">&middot; Client</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer-cta" id="contact">
+  <div class="wrap">
+    <div class="footer-lead" data-reveal>
+      <h2 class="display">Have a growth problem worth solving?</h2>
+      <a class="btn btn-talk" href="mailto:adoniasnigussie@gmail.com">Let's talk</a>
+    </div>
+    <div class="footer-links" data-reveal style="--d:100ms">
+      <a href="mailto:adoniasnigussie@gmail.com">adoniasnigussie@gmail.com</a>
+      <a href="https://www.linkedin.com/in/adoniasnigussie" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-base">
+      <span>Adonias Nigussie &middot; Addis Ababa, Ethiopia</span>
+      <span>Remote-ready, worldwide</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js');
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function markLoaded() {
+    requestAnimationFrame(function () { root.classList.add('loaded'); });
+  }
+  if (document.readyState === 'complete') { markLoaded(); }
+  else { window.addEventListener('load', markLoaded); }
+
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9) { return; }
+      el.classList.add('will-reveal');
+      io.observe(el);
+    });
+  }
+})();
+</script>
+</body>
+</html>

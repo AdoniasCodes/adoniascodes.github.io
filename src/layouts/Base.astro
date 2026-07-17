@@ -1,0 +1,30 @@
+---
+import Seo from "../components/Seo.astro";
+import PersonSchema from "../components/PersonSchema.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  type?: string;
+}
+
+const { title, description, ogImage, type } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <Seo title={title} description={description} ogImage={ogImage} type={type} />
+    <PersonSchema />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
