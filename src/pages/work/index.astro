@@ -15,11 +15,34 @@ const rows = work.map((entry) => ({
   detail: entry.data.role,
   period: entry.data.period,
 }));
+
+const more = [
+  {
+    client: "Acrylate",
+    place: "Italy",
+    note: "A bilingual (English and Italian) WooCommerce store with a custom product-customization workflow, artwork uploads, and Stripe checkout. Full-stack build, WooCommerce pushed well past its defaults.",
+  },
+  {
+    client: "Aerial Survey Company",
+    place: "Czech Republic, UK, US, Ethiopia",
+    note: "A corporate website for an international aerial-surveying firm. The work led directly to the Lifecare referral.",
+  },
+  {
+    client: "Ayat Real Estate",
+    place: "Ethiopia",
+    note: "An SEO-led redesign that modernized the site while preserving and improving its existing search rankings.",
+  },
+  {
+    client: "Addefinder Training",
+    place: "Ethiopia",
+    note: "SEO-ready websites and content built from scratch for three new brands launching at once.",
+  },
+];
 ---
 
 <Base
   title="Work | Adonias Nigussie, Growth & Performance Marketer"
-  description="Five growth marketing case studies with real numbers: outbound engines, 30+ paid campaigns, SEO from zero, and a B2B product taken from 100 to 500 customers."
+  description="Growth marketing case studies with real numbers: a SaaS portfolio grown to ~$22K MRR, a 300% lead-gen lift, vertical SEO wins, and a B2B product taken from 100 to 500 customers."
 >
   <section class="work-index">
     <div class="wrap">
@@ -29,10 +52,33 @@ const rows = work.map((entry) => ({
         </h1>
         <p class="work-intro rise" style="--d:120ms">
           Five engagements, five sets of real numbers. Every case study below
-          reports figures from campaign dashboards I built myself.
+          reports figures from dashboards and reports I built myself.
         </p>
       </header>
       <WorkLedger rows={rows} />
+
+      <section class="more" aria-labelledby="more-title">
+        <h2 id="more-title" class="section-title display" data-reveal>
+          More <span class="uline">work</span>
+        </h2>
+        <p class="more-intro" data-reveal>
+          Selected freelance and web projects across SEO, e-commerce, and custom
+          development.
+        </p>
+        <dl class="more-list">
+          {
+            more.map((item, i) => (
+              <div class="more-row" data-reveal style={`--d:${i * 70}ms`}>
+                <dt class="display">
+                  {item.client}
+                  <span class="more-place">{item.place}</span>
+                </dt>
+                <dd>{item.note}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
     </div>
   </section>
 </Base>
@@ -50,5 +96,62 @@ const rows = work.map((entry) => ({
     font-size: clamp(1.05rem, 1.6vw, 1.2rem);
     color: var(--ink-soft);
     text-wrap: pretty;
+  }
+  .more {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+  }
+  .more-intro {
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+    max-width: 52ch;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .more-list {
+    margin: 0;
+    border-bottom: var(--line-thin);
+  }
+  .more-row {
+    border-top: var(--line-thin);
+    padding: 1.4rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .more-row dt {
+    font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+  }
+  .more-place {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--tomato-deep);
+  }
+  .more-row dd {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    text-wrap: pretty;
+  }
+  @media (min-width: 60rem) {
+    .more-row {
+      display: grid;
+      grid-template-columns: minmax(14rem, 1fr) 2fr;
+      column-gap: 3rem;
+      align-items: start;
+      padding: 1.7rem 0.5rem;
+    }
+    .more-row dt {
+      flex-direction: column;
+      gap: 0.4rem;
+    }
   }
 </style>

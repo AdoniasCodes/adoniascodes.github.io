@@ -1,10 +1,10 @@
 ---
-title: "Top-3 Google rankings and a 70% sales lift"
-client: "Recognise Designs"
-clientDetail: "Recognise Designs, United Kingdom"
-role: "SEO & Content Marketing Specialist (contract, remote)"
+title: "How vertical SEO beat a market I could not outspend"
+client: "Recognise Design"
+clientDetail: "Recognise Design, United Kingdom. A digital agency; my main engagement was its client Electric Car Chargers UK."
+role: "SEO Specialist & Digital Marketing Consultant"
 period: "March 2023 to January 2025"
-teaser: "Top-3 Google rankings and a 70% sales lift"
+teaser: "Top-3 rankings for 14 keywords by refusing to fight the head terms"
 tag: "SEO"
 order: 4
 draft: false
@@ -12,22 +12,20 @@ draft: false
 
 ## Challenge
 
-Recognise Designs competed in a crowded UK market where the head terms belonged to bigger budgets. Buying visibility was off the table. The client needed organic traffic that converted, not just ranked.
+Recognise Design brought me in to fix SEO for its clients. The biggest was **Electric Car Chargers UK** (electriccarchargers.co.uk), a commercial and residential EV charger installer competing against national brands with far bigger budgets. The site was technically strong but had no real SEO strategy, and most target keywords sat on pages three to five. Paid search was not an option.
 
 ## Approach
 
-I built the content strategy around long-tail keywords with clear buying intent: the searches a customer types when they are ready to spend, not just browse. Each target keyword got a page or post written to match its search intent exactly, structured for search engines and written for humans.
+The head terms, "EV charger installation," "commercial EV chargers," belonged to companies I could not outspend. So I did not fight them head-on. Research across Search Console, SEMrush, Keyword Planner, AnswerThePublic, and Ubersuggest surfaced lower-competition verticals with real buying intent: EV chargers for hotels, for schools, for parks, for residential developments.
 
-The editorial system did the compounding. A publishing cadence, internal linking that passed strength to money pages, and copy that treated every ranking page as a sales asset. Storytelling carried the product pages; search-intent data decided what got written next.
+I built a dedicated, search-intent-matched page for each vertical, rewrote the site's content, fixed the technical foundation (internal linking, metadata, images, site architecture), and cleaned up a toxic backlink profile flagged in SEMrush while building a foundational one through directories and industry outreach. Ranking those verticals first built the domain authority that later made the competitive terms winnable.
 
 ## Result
 
-- **Top-3 Google rankings** for **14 long-tail keywords** within 9 months
-- Client sales up roughly **70%** through SEO-driven strategies
-- A **content engine** the client keeps publishing against
+- **Top-3 Google rankings for 14 target keywords** within roughly nine months
+- Organic traffic and qualified commercial enquiries both up, driving a real increase in sales
+- A vertical-first playbook that kept compounding after launch
 
-## Current SEO work
+I later supported additional Recognise clients, including **Berkeley Square Medical** and the agency's own site, with the same SEO and content approach.
 
-The same playbook now runs at [Lifecare Pharmaceuticals](/work/lifecare/) (Addis Ababa), a from-zero engagement documented in its own case study: full technical audit, 40-competitor landscape analysis, a 10-post editorial cluster, and Google Business Profile setup, with the site earning its first rankings within the first month.
-
-*UK client, remote delivery, two years of renewals. Time zones were never the problem.*
+*The lesson I keep: search intent beats search volume, and a battle you can win beats a bigger one you cannot.*
