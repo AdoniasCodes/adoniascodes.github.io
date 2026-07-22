@@ -30,4 +30,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://adoniasnigussie.netlify.app/sitemap-index.xml
+Sitemap: https://adoniascodes.github.io/sitemap-index.xml

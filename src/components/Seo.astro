@@ -15,7 +15,7 @@ const {
   canonical,
 } = Astro.props;
 
-const site = Astro.site ?? new URL("https://adoniasnigussie.netlify.app");
+const site = Astro.site ?? new URL("https://adoniascodes.github.io");
 const canonicalURL = canonical
   ? new URL(canonical, site)
   : new URL(Astro.url.pathname, site);

@@ -20,24 +20,7 @@ import Base from "../layouts/Base.astro";
       </header>
 
       <div class="contact-grid">
-        <form
-          id="contact-form"
-          class="contact-form rise"
-          style="--d:240ms"
-          name="contact"
-          method="POST"
-          action="/"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <p class="hp" aria-hidden="true">
-            <label>
-              Don't fill this out if you're human:
-              <input name="bot-field" tabindex="-1" autocomplete="off" />
-            </label>
-          </p>
-
+        <form id="contact-form" class="contact-form rise" style="--d:240ms">
           <div class="field">
             <label for="cf-name">Name</label>
             <input id="cf-name" name="name" type="text" required autocomplete="name" />
@@ -261,36 +244,34 @@ import Base from "../layouts/Base.astro";
   const modal = document.getElementById("contact-modal") as HTMLDialogElement;
   const message = document.getElementById("contact-modal-message")!;
 
-  const SUCCESS = "Got it. I'll reply within one business day.";
-  const ERROR =
-    "Something broke and your message didn't send. Email me directly at adoniasnigussie@gmail.com.";
+  const OPENED =
+    "Your email app should have opened with the message ready to send. If it did not, email me directly at adoniasnigussie@gmail.com.";
 
-  form?.addEventListener("submit", async (event) => {
+  form?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
-    button.disabled = true;
-    button.textContent = "Sending…";
+    const data = new FormData(form);
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const company = String(data.get("company") ?? "").trim();
+    const body = String(data.get("message") ?? "").trim();
 
-    const pairs: [string, string][] = [];
-    new FormData(form).forEach((value, key) => {
-      pairs.push([key, String(value)]);
-    });
+    const subject = `Portfolio enquiry from ${name || "your site"}`;
+    const lines = [
+      body,
+      "",
+      "---",
+      `From: ${name}`,
+      `Email: ${email}`,
+      company ? `Company: ${company}` : "",
+    ].filter(Boolean);
 
-    try {
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(pairs).toString(),
-      });
-      if (!response.ok) throw new Error(String(response.status));
-      message.textContent = SUCCESS;
-      form.reset();
-    } catch {
-      message.textContent = ERROR;
-    } finally {
-      button.disabled = false;
-      button.textContent = "Send message";
-      modal.showModal();
-    }
+    const href =
+      "mailto:adoniasnigussie@gmail.com" +
+      `?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(lines.join("\n"))}`;
+
+    window.location.href = href;
+    message.textContent = OPENED;
+    modal.showModal();
   });
 </script>
