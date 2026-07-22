@@ -23,7 +23,7 @@ I built a dedicated, search-intent-matched page for each vertical, rewrote the s
 ## Result
 
 - **Top-3 Google rankings for 14 target keywords** within roughly nine months
-- Organic traffic and qualified commercial enquiries both up, driving a real increase in sales
+- Organic traffic and qualified commercial enquiries both up, driving roughly a **70% increase in sales**
 - A vertical-first playbook that kept compounding after launch
 
 I later supported additional Recognise clients, including **Berkeley Square Medical** and the agency's own site, with the same SEO and content approach.

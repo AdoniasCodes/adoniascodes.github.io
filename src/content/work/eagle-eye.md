@@ -3,7 +3,7 @@ title: "Building an agency, and a 300% lead-gen win for its clients"
 client: "Eagle Eye Business Group"
 clientDetail: "Eagle Eye Business Group, Ethiopia. A marketing, branding, and web agency I helped build."
 role: "Marketing Director"
-period: "Multi-year engagement"
+period: "February 2025 to present"
 teaser: "A 300% lead-gen lift for Palm Real Estate, plus a roadside-assistance startup launched from zero"
 tag: "Agency"
 order: 2
@@ -20,7 +20,7 @@ I led multi-channel campaigns that mixed paid social and search with TV advertis
 
 The flagship client win was **Palm Real Estate**. Their problem was lead generation, so I rebuilt the funnel: sharper targeting, better paid campaigns, and website and conversion fixes that turned traffic into enquiries.
 
-We also built products of our own. **CarCare** was the biggest: Ethiopia's take on an AAA-style roadside-assistance membership, covering roadside help, a mobile garage, and vehicle services. I owned its positioning, marketing strategy, website, and launch campaigns.
+We also built products of our own. **CarCare** was the biggest: Ethiopia's take on an AAA-style roadside-assistance membership, covering roadside help, a mobile garage, and vehicle services. I owned its positioning, marketing strategy, website, and launch campaigns. I also co-founded **Ethiopia Exports**, a B2B platform to connect Ethiopian exporters with international buyers and simplify EU compliance, which gave me hands-on experience taking a product from idea to market.
 
 ## Result
 
