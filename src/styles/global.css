@@ -181,6 +181,38 @@ a {
   box-shadow: 3px 3px 0 var(--ink);
 }
 
+/* Download-CV text link */
+.cv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--tomato);
+  color: var(--ink);
+}
+.cv-link span {
+  display: inline-block;
+  transition: transform 0.18s var(--ease-out);
+}
+.cv-link:hover,
+.cv-link:focus-visible {
+  text-decoration-color: var(--ink);
+}
+.cv-link:hover span,
+.cv-link:focus-visible span {
+  transform: translateY(3px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cv-link span {
+    transition: none;
+  }
+}
+
 /* ------------------------------------------------------------------
    Sticker (marigold, rotated, breaks the grid)
 ------------------------------------------------------------------- */

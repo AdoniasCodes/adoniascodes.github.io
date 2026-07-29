@@ -12,7 +12,14 @@ const isCurrent = (href: string) =>
 
 <header class="site-nav">
   <nav class="wrap" aria-label="Main">
-    <a class="wordmark display" href="/">Adonias Nigussie</a>
+    <a class="wordmark" href="/" aria-label="Adonias Nigussie, home">
+      <span class="mark" aria-hidden="true">
+        <span class="mark-a">A</span><span class="mark-n">N</span>
+      </span>
+      <span class="wordmark-name display">
+        Adonias <span class="wordmark-last">Nigussie</span>
+      </span>
+    </a>
     <ul>
       {
         links.map((link) => (
@@ -26,6 +33,11 @@ const isCurrent = (href: string) =>
           </li>
         ))
       }
+      <li>
+        <a class="nav-cv" href="/Adonias-Nigussie-CV.pdf" download>
+          CV <span aria-hidden="true">&#8595;</span>
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
@@ -44,22 +56,83 @@ const isCurrent = (href: string) =>
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.4rem 1rem;
-    padding-block: 0.85rem;
+    padding-block: 0.7rem;
   }
+
+  /* ---------- Wordmark + monogram ---------- */
   .wordmark {
-    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
+    color: var(--ink);
   }
+  .mark {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 2.05rem;
+    height: 2.05rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    line-height: 1;
+    color: var(--ink);
+    background: var(--marigold);
+    border: var(--line-thin);
+    border-radius: 3px;
+    box-shadow: 3px 3px 0 var(--ink);
+    transform: rotate(-3deg);
+    transition:
+      transform 0.2s var(--ease-out),
+      box-shadow 0.2s var(--ease-out),
+      background-color 0.2s ease-out;
+    overflow: hidden;
+  }
+  .mark-a,
+  .mark-n {
+    position: relative;
+    z-index: 1;
+  }
+  .mark-n {
+    margin-left: -0.09em;
+    color: var(--tomato);
+  }
+  /* diagonal accent slice behind the monogram */
+  .mark::before {
+    content: "";
+    position: absolute;
+    inset: -30% -10% auto -10%;
+    height: 55%;
+    background: var(--sand);
+    transform: rotate(-18deg);
+    opacity: 0.35;
+  }
+  .wordmark:hover .mark,
+  .wordmark:focus-visible .mark {
+    transform: rotate(0deg) translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--tomato);
+  }
+  .wordmark-name {
+    font-size: 1.02rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .wordmark-last {
+    color: var(--tomato);
+  }
+
+  /* ---------- Nav links ---------- */
   ul {
     display: flex;
-    gap: clamp(0.9rem, 3vw, 2rem);
+    align-items: center;
+    gap: clamp(0.85rem, 3vw, 2rem);
     list-style: none;
     margin: 0;
     padding: 0;
   }
   ul a {
+    font-family: var(--font-body);
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;
@@ -77,7 +150,35 @@ const isCurrent = (href: string) =>
   ul a[aria-current="page"]:hover {
     border-bottom-color: var(--tomato);
   }
+  /* CV as a small badge-button */
+  .nav-cv {
+    font-family: var(--font-display) !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink) !important;
+    background: var(--marigold);
+    border: var(--line-thin);
+    border-radius: 3px;
+    padding: 0.4rem 0.7rem !important;
+    box-shadow: 2px 2px 0 var(--ink);
+    transition:
+      transform 0.15s var(--ease-out),
+      box-shadow 0.15s var(--ease-out) !important;
+  }
+  .nav-cv:hover {
+    border-bottom-color: transparent;
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--tomato);
+  }
+  @media (max-width: 26rem) {
+    .wordmark-name {
+      font-size: 0.92rem;
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
+    .mark,
+    .nav-cv,
     ul a {
       transition: none;
     }

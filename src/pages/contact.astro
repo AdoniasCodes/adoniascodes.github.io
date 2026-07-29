@@ -20,7 +20,7 @@ import Base from "../layouts/Base.astro";
       </header>
 
       <div class="contact-grid">
-        <form id="contact-form" class="contact-form rise" style="--d:240ms">
+        <form id="contact-form" class="contact-form rise" style="--d:240ms" novalidate>
           <input
             type="text"
             name="_honey"
@@ -31,19 +31,57 @@ import Base from "../layouts/Base.astro";
           />
           <div class="field">
             <label for="cf-name">Name</label>
-            <input id="cf-name" name="name" type="text" required autocomplete="name" />
+            <input
+              id="cf-name"
+              name="name"
+              type="text"
+              required
+              maxlength="100"
+              autocomplete="name"
+              autocapitalize="words"
+              aria-describedby="err-name"
+            />
+            <span class="field-error" id="err-name" role="alert"></span>
           </div>
           <div class="field">
             <label for="cf-email">Email</label>
-            <input id="cf-email" name="email" type="email" required autocomplete="email" />
+            <input
+              id="cf-email"
+              name="email"
+              type="email"
+              required
+              maxlength="254"
+              inputmode="email"
+              autocomplete="email"
+              autocapitalize="off"
+              spellcheck="false"
+              aria-describedby="err-email"
+            />
+            <span class="field-error" id="err-email" role="alert"></span>
           </div>
           <div class="field">
             <label for="cf-company">Company <span class="opt">(optional)</span></label>
-            <input id="cf-company" name="company" type="text" autocomplete="organization" />
+            <input
+              id="cf-company"
+              name="company"
+              type="text"
+              maxlength="120"
+              autocomplete="organization"
+              aria-describedby="err-company"
+            />
+            <span class="field-error" id="err-company" role="alert"></span>
           </div>
           <div class="field">
             <label for="cf-message">What do you need?</label>
-            <textarea id="cf-message" name="message" rows="6" required></textarea>
+            <textarea
+              id="cf-message"
+              name="message"
+              rows="6"
+              required
+              minlength="10"
+              maxlength="2000"
+              aria-describedby="err-message"></textarea>
+            <span class="field-error" id="err-message" role="alert"></span>
           </div>
 
           <button class="btn btn-primary" type="submit">Send message</button>
@@ -165,6 +203,19 @@ import Base from "../layouts/Base.astro";
     outline-offset: 2px;
     box-shadow: 2px 2px 0 var(--sand-deep);
   }
+  .field input[aria-invalid="true"],
+  .field textarea[aria-invalid="true"] {
+    outline: 2px solid var(--tomato);
+    outline-offset: 1px;
+  }
+  .field-error {
+    color: var(--tomato-deep);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  .field-error:empty {
+    display: none;
+  }
   .contact-form .btn[disabled] {
     opacity: 0.6;
     cursor: wait;
@@ -253,42 +304,120 @@ import Base from "../layouts/Base.astro";
   const message = document.getElementById("contact-modal-message")!;
 
   const ENDPOINT = "https://formsubmit.co/ajax/adoniasnigussie@gmail.com";
-  const SUCCESS = "Got it. Your message is on its way, and I'll reply within one business day.";
+  const SUCCESS =
+    "Got it. Your message is on its way, and I'll reply within one business day.";
   const ERROR =
     "Something broke and your message didn't send. Email me directly at adoniasnigussie@gmail.com.";
 
-  form?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
-    button.disabled = true;
-    button.textContent = "Sending…";
+  /* Strip control chars; optionally flatten to one line (blocks header
+     injection via CR/LF in name/email); collapse runs of spaces; cap length. */
+  const sanitize = (raw: unknown, max: number, singleLine = false): string => {
+    let v = String(raw ?? "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "");
+    if (singleLine) v = v.replace(/[\r\n]+/g, " ");
+    v = v.replace(/[ \t]{2,}/g, " ").trim();
+    return v.slice(0, max);
+  };
 
-    const payload: Record<string, string> = {};
-    new FormData(form).forEach((value, key) => {
-      payload[key] = String(value);
-    });
-    payload._subject = `Portfolio enquiry from ${payload.name || "your site"}`;
-    payload._template = "table";
-    payload._captcha = "false";
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-    try {
-      const response = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) throw new Error(String(response.status));
-      message.textContent = SUCCESS;
-      form.reset();
-    } catch {
-      message.textContent = ERROR;
-    } finally {
-      button.disabled = false;
-      button.textContent = "Send message";
-      modal.showModal();
+  const setError = (id: string, msg: string): boolean => {
+    const el = document.getElementById(id);
+    const input = document.getElementById(id.replace("err-", "cf-"));
+    if (el) el.textContent = msg;
+    if (input) {
+      if (msg) input.setAttribute("aria-invalid", "true");
+      else input.removeAttribute("aria-invalid");
     }
+    return !msg;
+  };
+
+  /* Clear a field's error as the user fixes it */
+  ["name", "email", "company", "message"].forEach((f) => {
+    document
+      .getElementById(`cf-${f}`)
+      ?.addEventListener("input", () => setError(`err-${f}`, ""));
   });
+
+  if (form) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const data = new FormData(form);
+      // Honeypot: a filled hidden field means a bot. Pretend success, send nothing.
+      if (sanitize(data.get("_honey"), 100)) {
+        message.textContent = SUCCESS;
+        form.reset();
+        modal.showModal();
+        return;
+      }
+
+      const name = sanitize(data.get("name"), 100, true);
+      const email = sanitize(data.get("email"), 254, true);
+      const company = sanitize(data.get("company"), 120, true);
+      const body = sanitize(data.get("message"), 2000);
+
+      const ok =
+        [
+          setError("err-name", name ? "" : "Please enter your name."),
+          setError(
+            "err-email",
+            !email
+              ? "Please enter your email."
+              : EMAIL_RE.test(email)
+                ? ""
+                : "Please enter a valid email address.",
+          ),
+          setError("err-company", ""),
+          setError(
+            "err-message",
+            body.length >= 10
+              ? ""
+              : "Please add a little more detail (at least 10 characters).",
+          ),
+        ].every(Boolean);
+
+      if (!ok) {
+        form
+          .querySelector<HTMLElement>('[aria-invalid="true"]')
+          ?.focus();
+        return;
+      }
+
+      const button = form.querySelector<HTMLButtonElement>(
+        "button[type=submit]",
+      )!;
+      button.disabled = true;
+      button.textContent = "Sending…";
+
+      const payload: Record<string, string> = {
+        name,
+        email,
+        message: body,
+        _subject: `Portfolio enquiry from ${name}`,
+        _template: "table",
+        _captcha: "false",
+      };
+      if (company) payload.company = company;
+
+      try {
+        const response = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) throw new Error(String(response.status));
+        message.textContent = SUCCESS;
+        form.reset();
+      } catch {
+        message.textContent = ERROR;
+      } finally {
+        button.disabled = false;
+        button.textContent = "Send message";
+        modal.showModal();
+      }
+    });
+  }
 </script>

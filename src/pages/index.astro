@@ -55,8 +55,13 @@ const services = [
 >
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero-grid">
-      <h1 id="hero-title" class="display rise" style="--d:0ms">
-        I build the systems that <span class="uline">grow businesses.</span>
+      <h1 id="hero-title" class="hero-title display">
+        <span class="w" style="--i:0">I</span> <span class="w" style="--i:1">build</span>
+        <span class="w" style="--i:2">the</span> <span class="w" style="--i:3">systems</span>
+        <span class="w" style="--i:4">that</span> <span class="uline uline-draw"><span
+            class="w"
+            style="--i:5">grow</span> <span class="w" style="--i:6"
+          >businesses.</span></span>
       </h1>
       <p class="hero-sub rise" style="--d:120ms">
         I'm <strong>Adonias Nigussie</strong>, a marketing and growth strategist.
@@ -64,9 +69,12 @@ const services = [
         revenue, and I have done it with companies across Estonia, the UK, Italy,
         and Ethiopia.
       </p>
-      <div class="hero-actions rise" style="--d:240ms">
+      <div class="hero-actions rise" style="--d:520ms">
         <a class="btn btn-primary" href="/work/">See my work</a>
         <a class="btn btn-secondary" href="/contact/">Get in touch</a>
+        <a class="cv-link" href="/Adonias-Nigussie-CV.pdf" download>
+          Download CV <span aria-hidden="true">&#8595;</span>
+        </a>
       </div>
       <figure class="hero-photo rise" style="--d:300ms">
         <div class="photo-frame" data-tilt>
@@ -172,10 +180,44 @@ const services = [
     gap: 2.25rem;
   }
   .hero h1 {
-    font-size: clamp(2.6rem, 8vw, 5.4rem);
-    line-height: 1.02;
+    font-size: clamp(1.95rem, 6vw, 4rem);
+    line-height: 1.03;
     max-width: 13ch;
     text-transform: uppercase;
+  }
+  /* Word-by-word entrance */
+  .hero-title .w {
+    display: inline-block;
+  }
+  .js .hero-title .w {
+    opacity: 0;
+    transform: translateY(0.55em) rotate(1.5deg);
+  }
+  .js.loaded .hero-title .w {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.6s var(--ease-out);
+    transition-delay: calc(var(--i) * 65ms + 80ms);
+  }
+  /* Tomato underline draws in after the words land */
+  .js .hero-title .uline-draw {
+    background-size: 0% 0.14em;
+  }
+  .js.loaded .hero-title .uline-draw {
+    background-size: 100% 0.14em;
+    transition: background-size 0.55s var(--ease-out);
+    transition-delay: 620ms;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .hero-title .w {
+      opacity: 1;
+      transform: none;
+    }
+    .js .hero-title .uline-draw {
+      background-size: 100% 0.14em;
+    }
   }
   .hero-sub {
     max-width: 56ch;
