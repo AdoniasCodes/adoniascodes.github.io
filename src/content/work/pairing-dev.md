@@ -2,7 +2,7 @@
 title: "The growth engine behind a multi-product SaaS studio"
 client: "Pairing.dev"
 clientDetail: "Pairing.dev, Estonia. A SaaS studio building several recurring-revenue products at once."
-role: "Growth & Digital Marketing Lead, Remote (part-time)"
+role: "Digital Marketing Manager & Growth Strategist, Part-time"
 period: "July 2025 to present"
 teaser: "From near-zero recurring revenue to a ~$22K MRR portfolio"
 tag: "Growth"

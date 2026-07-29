@@ -2,8 +2,8 @@
 title: "How vertical SEO beat a market I could not outspend"
 client: "Recognise Design"
 clientDetail: "Recognise Design, United Kingdom. A digital agency; my main engagement was its client Electric Car Chargers UK."
-role: "SEO Specialist & Digital Marketing Consultant"
-period: "March 2023 to January 2025"
+role: "Search Engine Optimization Manager"
+period: "March 2023 to August 2024"
 teaser: "Top-3 rankings for 14 keywords by refusing to fight the head terms"
 tag: "SEO"
 order: 4

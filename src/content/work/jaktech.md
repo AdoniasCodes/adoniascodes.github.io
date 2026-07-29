@@ -2,8 +2,8 @@
 title: "A B2B product taken from 100 to 500 customers in a year"
 client: "Jaktech"
 clientDetail: "Jaktech Engineering & Trading PLC. In-house SaaS and ERP products."
-role: "Marketing Manager, promoted from Digital Marketer after 6 months"
-period: "September 2022 to June 2024"
+role: "Head of Marketing"
+period: "October 2022 to March 2024"
 teaser: "A B2B product taken from 100 to 500 customers in a year"
 tag: "Growth"
 order: 3
@@ -19,7 +19,7 @@ Jaktech's flagship B2B product was stuck near 100 customers. Marketing budget wa
 - The product grew from **100 to 500 customers** within one year
 - I contributed to roughly **60% of high-value client acquisition** through marketing and direct sales
 - An in-house product's social following grew to **40,000 in 2 months** on a **$300 budget**
-- I was **promoted to Marketing Manager** after 6 months
+- I owned the product's entire marketing function as **Head of Marketing**
 
 ## Approach
 
