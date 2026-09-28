@@ -17,5 +17,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [react(), sitemap({ filter: (page) => !/\/hero-[ab]\/$/.test(page) })]
+  integrations: [react(), sitemap()]
 });

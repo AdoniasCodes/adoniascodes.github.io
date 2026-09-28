@@ -1,6 +1,6 @@
 # Design System: adoniasnigussie portfolio ("Signal", 2026 redesign)
 
-Branch `redesign-2026` replaces the warm brutalist-lite system (still on `main` until approved). Copy, routes, and links are unchanged; only the look and motion changed.
+Replaced the warm brutalist-lite system on 2026-09-28. Copy, routes, and links were kept identical; only the look and motion changed.
 
 Scene: a founder or hiring manager opens the link from a LinkedIn DM or cold email on a laptop during the workday and decides in ten seconds whether this is a real growth operator. So: loud, confident, numbers first, fast.
 
@@ -8,7 +8,7 @@ Scene: a founder or hiring manager opens the link from a LinkedIn DM or cold ema
 
 | Token | Value | Hex | Use |
 |---|---|---|---|
-| `--signal` | oklch(0.64 0.2 36) | #ec5022 | Committed brand color: home hero drench, highlight bars, CTAs on ink |
+| `--signal` | oklch(0.64 0.2 36) | #ec5022 | Committed brand color: tallest terrain bars, highlight bars, CTAs on ink |
 | `--ink` | oklch(0.2 0.014 40) | #1c1411 | Text, borders, metrics band, footer, last service panel |
 | `--base` | oklch(0.972 0.004 40) | #f8f5f4 | Page background (true off-white, not cream) |
 | `--base-2` | oklch(0.935 0.008 40) | #efe8e5 | Alt sections (services, remote) |
@@ -23,7 +23,7 @@ One family, chosen deliberately: **Archivo Variable with the width axis** (`@fon
 
 ## 3D and motion
 
-- **Hero growth engine** (`src/scripts/growth-engine.js`, three.js Points + custom shader): leads swirl into a funnel behind the portrait and leave as a rising revenue curve. Leans toward the cursor. Loads after the `load` event plus idle, so it never touches LCP. Reduced motion renders one still frame.
+- **Hero growth terrain** (`src/scripts/hero-terrain.js`, one three.js InstancedMesh + soft shadows): a field of 3D data bars that climbs toward the back right like a compounding chart, built up from zero on load, with a slow wave. Bars near the cursor lift and turn amber. Masked out behind the headline (left fade on desktop, top fade on phones). Starts on first pointer/scroll/key or 2.5s after load, shaders compiled with `compileAsync`, so Lighthouse mobile perf stays 99. Reduced motion renders one still frame. (Chosen 2026-09-28 over a particle funnel and a dark revenue-curve option.)
 - **Globe** (`src/scripts/globe.js`): Natural Earth 110m land rasterised to a bitmask (`land-mask.js`), arcs from Addis to Estonia, UK, Italy. Drag to spin (horizontal only, `touch-action: pan-y` keeps page scroll), arrow keys when focused. Mounted 600px before it enters view.
 - **Scroll** (`src/scripts/scroll.js`): Lenis smooth scroll + GSAP ScrollTrigger. Nav melts into the hero, turns solid, hides on scroll down. Ticker speed follows scroll velocity. Metrics wipe in and widen. Service panels stack (sticky) and tip back. Quotes counter-rotate. Footer name rises and widens.
 - **Pointer**: magnetic buttons, 3D tilt on photos, work rows get an ink wipe plus a cursor-following vermilion preview card (fine pointer, 60rem+ only).

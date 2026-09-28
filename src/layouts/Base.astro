@@ -12,7 +12,7 @@ interface Props {
   ogImage?: string;
   type?: string;
   page?: string;
-  navTone?: "signal" | "base" | "dark";
+  navTone?: "signal" | "base";
   noindex?: boolean;
 }
 
@@ -25,7 +25,7 @@ const { title, description, ogImage, type, page = "inner", navTone, noindex = fa
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
-    <meta name="theme-color" content="#ec5022" />
+    <meta name="theme-color" content="#f8f5f4" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
     <meta name="generator" content={Astro.generator} />
