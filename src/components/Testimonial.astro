@@ -6,6 +6,7 @@ interface Props {
   rotate?: number;
   quoted?: boolean;
   delay?: number;
+  tone?: "base" | "signal" | "amber";
 }
 
 const {
@@ -15,58 +16,91 @@ const {
   rotate = -1,
   quoted = true,
   delay = 0,
+  tone = "base",
 } = Astro.props;
 ---
 
 <figure
-  class:list={["quote-block", { unquoted: !quoted }]}
+  class:list={["quote-block", `tone-${tone}`, { unquoted: !quoted }]}
   style={`--rot:${rotate}deg; --d:${delay}ms`}
-  data-reveal
+  data-drift
 >
+  {quoted && <span class="qmark" aria-hidden="true">&ldquo;</span>}
   <blockquote>
     <p>{quote}</p>
   </blockquote>
   <figcaption>
+    <span class="src-dot" aria-hidden="true"></span>
     {source}{role && <span class="role"> &middot; {role}</span>}
   </figcaption>
 </figure>
 
 <style>
   .quote-block {
+    position: relative;
     transform: rotate(var(--rot, -1deg));
-    background: var(--sand-deep);
+    background: var(--base);
     border: var(--line);
-    border-radius: 2px;
-    box-shadow: var(--shadow-tomato);
-    padding: clamp(1.5rem, 4vw, 2.75rem);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: clamp(1.6rem, 4vw, 2.8rem);
+    margin: 0;
+  }
+  .tone-signal {
+    background: var(--signal);
+  }
+  .tone-amber {
+    background: var(--amber);
+  }
+  .qmark {
+    position: absolute;
+    top: -0.2em;
+    right: 0.25em;
+    font-weight: 900;
+    font-stretch: 125%;
+    font-size: clamp(5rem, 12vw, 8rem);
+    line-height: 1;
+    color: var(--ink);
+    opacity: 0.12;
+    pointer-events: none;
   }
   blockquote {
     margin: 0;
   }
   blockquote p {
-    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
-    font-weight: 600;
-    line-height: 1.35;
+    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    font-stretch: 105%;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
     text-wrap: pretty;
     margin: 0;
   }
   .quote-block:not(.unquoted) blockquote p::before {
     content: "\201C";
-    color: var(--tomato);
   }
   .quote-block:not(.unquoted) blockquote p::after {
     content: "\201D";
-    color: var(--tomato);
   }
   figcaption {
-    margin-top: 1.2rem;
-    font-size: 1rem;
-    font-weight: 700;
-    font-variant-caps: all-small-caps;
-    letter-spacing: 0.12em;
+    margin-top: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    font-stretch: 115%;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .src-dot {
+    flex: none;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: var(--ink);
   }
   figcaption .role {
     font-weight: 500;
-    color: var(--ink-soft);
   }
 </style>

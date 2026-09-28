@@ -10,6 +10,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://adoniascodes.github.io',
   trailingSlash: 'always',
+  build: {
+    inlineStylesheets: 'always'
+  },
   vite: {
     plugins: [tailwindcss()]
   },

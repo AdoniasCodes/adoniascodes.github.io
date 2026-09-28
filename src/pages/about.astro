@@ -13,7 +13,7 @@ import portrait from "../assets/adonias-portrait-900.webp";
       <header class="about-head">
         <div class="about-head-copy">
           <h1 class="page-title display rise" style="--d:0ms">
-            The strategist who <span class="uline">builds his own systems.</span>
+            The strategist who <span class="mark-hl">builds his own systems.</span>
           </h1>
           <p class="lead rise" style="--d:120ms">
             I've been doing this since 2019: 40+ clients, 30+ websites shipped,
@@ -121,8 +121,8 @@ import portrait from "../assets/adonias-portrait-900.webp";
   .photo-frame {
     border: var(--line);
     border-radius: 2px;
-    box-shadow: var(--shadow-ink);
-    background: var(--sand-deep);
+    box-shadow: var(--shadow);
+    background: var(--base-2);
   }
   .photo-frame img {
     display: block;
@@ -141,6 +141,9 @@ import portrait from "../assets/adonias-portrait-900.webp";
       max-width: 19rem;
     }
   }
+  .about-head .page-title {
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+  }
   .lead {
     margin-top: 1.6rem;
     max-width: 62ch;
@@ -153,7 +156,7 @@ import portrait from "../assets/adonias-portrait-900.webp";
     text-transform: uppercase;
     margin-top: clamp(2.8rem, 6vw, 4rem);
     padding-bottom: 0.3rem;
-    background-image: linear-gradient(var(--tomato), var(--tomato));
+    background-image: linear-gradient(var(--signal), var(--signal));
     background-size: 3.5ch 0.22em;
     background-position: 0 100%;
     background-repeat: no-repeat;
@@ -167,7 +170,7 @@ import portrait from "../assets/adonias-portrait-900.webp";
   .diff-list p,
   .remote-answer {
     max-width: 66ch;
-    color: var(--ink-soft);
+    color: var(--ink-2);
     text-wrap: pretty;
   }
   .diff-list p strong,
@@ -181,11 +184,11 @@ import portrait from "../assets/adonias-portrait-900.webp";
     margin: 1.4rem 0 0;
     padding: 0;
     list-style: none;
-    border-bottom: var(--line-thin);
+    border-bottom: var(--line);
     max-width: 42rem;
   }
   .edu-list li {
-    border-top: var(--line-thin);
+    border-top: var(--line);
     padding: 0.85rem 0.25rem;
     font-weight: 600;
   }
