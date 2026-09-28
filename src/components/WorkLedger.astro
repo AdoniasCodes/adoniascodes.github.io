@@ -6,6 +6,7 @@ interface Row {
   title: string;
   period?: string;
   detail?: string;
+  teaser?: string;
 }
 
 interface Props {
@@ -15,7 +16,7 @@ interface Props {
 const { rows } = Astro.props;
 ---
 
-<ul class="work-list">
+<ol class="work-list">
   {
     rows.map((row, i) => (
       <li>
@@ -23,14 +24,18 @@ const { rows } = Astro.props;
           class="work-row"
           href={row.href}
           data-reveal
+          data-preview-row
+          data-teaser={row.teaser}
+          data-tag={row.tag}
           style={`--d:${i * 70}ms`}
         >
-          <span class="tag">{row.tag}</span>
           <span class="row-body">
-            <span class="row-title display">
-              <span class="co">{row.client}:</span> {row.title}
-            </span>
+            <span class="row-client">{row.client}</span>
+            <span class="row-title">{row.title}</span>
             {row.detail && <span class="row-detail">{row.detail}</span>}
+          </span>
+          <span class="row-side">
+            <span class="tag">{row.tag}</span>
             {row.period && <span class="row-period">{row.period}</span>}
           </span>
           <span class="row-arrow" aria-hidden="true">
@@ -40,7 +45,13 @@ const { rows } = Astro.props;
       </li>
     ))
   }
-</ul>
+</ol>
+
+<div class="work-preview" data-preview aria-hidden="true">
+  <span class="pv-tag" data-pv-tag></span>
+  <span class="pv-teaser" data-pv-teaser></span>
+  <span class="pv-cta">Read the case study &rarr;</span>
+</div>
 
 <style>
   .work-list {
@@ -50,83 +61,176 @@ const { rows } = Astro.props;
     border-bottom: var(--line);
   }
   .work-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    padding: 1.6rem 0.25rem;
     border-top: var(--line);
-    padding: 1.5rem 0.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
     text-decoration: none;
-    transition:
-      background-color 0.18s ease-out,
-      padding-left 0.25s var(--ease-out);
+    isolation: isolate;
   }
-  .work-row:hover {
-    background: var(--sand-deep);
+  /* Ink wipe from the left on hover */
+  .work-row::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.55s var(--ease-out);
   }
   .row-body {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+  .row-client {
+    font-weight: 900;
+    font-stretch: 125%;
+    font-size: clamp(1.6rem, 4.4vw, 3rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    transition:
+      font-stretch 0.6s var(--ease-out),
+      color 0.3s ease-out;
+    overflow-wrap: anywhere;
   }
   .row-title {
-    font-size: clamp(1.25rem, 2.6vw, 1.9rem);
-    line-height: 1.15;
-    text-wrap: balance;
-  }
-  .row-title .co {
-    color: var(--tomato);
-  }
-  .row-detail {
-    color: var(--ink-soft);
-    max-width: 60ch;
-    text-wrap: pretty;
-  }
-  .row-period {
-    font-size: 0.88rem;
     font-weight: 600;
-    color: var(--ink-soft);
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    line-height: 1.4;
+    max-width: 44ch;
+    text-wrap: pretty;
+    transition: color 0.3s ease-out;
+  }
+  .row-detail,
+  .row-period {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    transition: color 0.3s ease-out;
+  }
+  .row-side {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.9rem;
+    margin-top: 0.4rem;
   }
   .row-arrow {
     display: none;
   }
+
   @media (min-width: 60rem) {
     .work-row {
-      display: grid;
-      grid-template-columns: 10rem 1fr auto;
-      column-gap: 2.5rem;
-      align-items: start;
-      padding: 2rem 1rem;
+      grid-template-columns: minmax(0, 1fr) 13rem 3rem;
+      align-items: center;
+      column-gap: 2rem;
+      padding: 2.1rem 1rem;
     }
-    .work-row .tag {
-      margin-top: 0.35rem;
-      justify-self: start;
+    .row-side {
+      grid-column: auto;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 0;
     }
     .row-arrow {
-      display: block;
-      align-self: center;
-      font-size: 1.5rem;
-      color: var(--ink-soft);
+      display: grid;
+      place-items: center;
+      width: 3rem;
+      height: 3rem;
+      border: var(--line);
+      border-radius: 50%;
+      font-size: 1.2rem;
       transition:
-        transform 0.25s var(--ease-out),
-        color 0.18s ease-out;
+        transform 0.45s var(--ease-out),
+        background-color 0.3s ease-out,
+        border-color 0.3s ease-out;
     }
-    .work-row:hover .row-arrow {
-      color: var(--tomato);
-      transform: translateX(6px);
+    .work-row:hover::before,
+    .work-row:focus-visible::before {
+      transform: scaleX(1);
     }
-    li:nth-child(even) .work-row {
-      padding-left: 4rem;
+    .work-row:hover .row-client,
+    .work-row:focus-visible .row-client {
+      color: var(--signal);
+      font-stretch: 100%;
     }
-    .work-row:hover {
-      padding-left: 2rem;
+    .work-row:hover .row-title,
+    .work-row:focus-visible .row-title {
+      color: var(--on-ink);
     }
-    li:nth-child(even) .work-row:hover {
-      padding-left: 5rem;
+    .work-row:hover :is(.row-detail, .row-period),
+    .work-row:focus-visible :is(.row-detail, .row-period) {
+      color: var(--on-ink-2);
+    }
+    .work-row:hover .row-arrow,
+    .work-row:focus-visible .row-arrow {
+      transform: rotate(-45deg);
+      background: var(--signal);
+      border-color: var(--signal);
+      color: var(--ink);
     }
   }
+
+  /* Cursor-following preview card (fine pointer only; see scroll.js) */
+  .work-preview {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: var(--z-float);
+    width: 18rem;
+    padding: 1.1rem 1.2rem 1rem;
+    background: var(--signal);
+    color: var(--ink);
+    border: var(--line);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    pointer-events: none;
+    opacity: 0;
+    scale: 0.6;
+    transition:
+      opacity 0.25s ease-out,
+      scale 0.4s var(--ease-out);
+    display: none;
+  }
+  @media (pointer: fine) and (min-width: 60rem) {
+    .work-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+  .work-preview:global(.is-on) {
+    opacity: 1;
+    scale: 1;
+  }
+  .pv-tag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .pv-teaser {
+    font-weight: 860;
+    font-stretch: 115%;
+    font-size: 1.25rem;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+  }
+  .pv-cta {
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .work-row,
-    .row-arrow {
+    .work-row::before,
+    .row-client,
+    .row-arrow,
+    .work-preview {
       transition: none;
     }
   }

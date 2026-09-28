@@ -1,4 +1,10 @@
 ---
+interface Props {
+  tone?: "signal" | "base";
+}
+
+const { tone = "base" } = Astro.props;
+
 const links = [
   { href: "/work/", label: "Work" },
   { href: "/about/", label: "About" },
@@ -10,15 +16,11 @@ const isCurrent = (href: string) =>
   href === "/" ? path === "/" : path.startsWith(href);
 ---
 
-<header class="site-nav">
+<header class:list={["site-nav", `tone-${tone}`]} data-nav>
   <nav class="wrap" aria-label="Main">
-    <a class="wordmark" href="/" aria-label="Adonias Nigussie, home">
-      <span class="mark" aria-hidden="true">
-        <span class="mark-a">A</span><span class="mark-n">N</span>
-      </span>
-      <span class="wordmark-name display">
-        Adonias <span class="wordmark-last">Nigussie</span>
-      </span>
+    <a class="wordmark" href="/">
+      <span class="mark" aria-hidden="true">AN</span>
+      <span class="wordmark-name">Adonias Nigussie</span>
     </a>
     <ul>
       {
@@ -44,142 +46,138 @@ const isCurrent = (href: string) =>
 
 <style>
   .site-nav {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    inset: 0 0 auto 0;
     z-index: var(--z-nav);
-    background: var(--sand);
-    border-bottom: var(--line);
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    background: var(--base);
+    border-bottom: 2px solid transparent;
+    transition:
+      background-color 0.35s ease-out,
+      border-color 0.35s ease-out,
+      translate 0.45s var(--ease-out);
+  }
+  /* On the home hero the bar melts into the vermilion field */
+  .site-nav.tone-signal {
+    background: transparent;
+  }
+  .site-nav.is-scrolled {
+    background: var(--base);
+    border-bottom-color: var(--ink);
+  }
+  /* Hides while reading downward, returns on any upward scroll */
+  .site-nav.is-hidden {
+    translate: 0 -100%;
   }
   .site-nav .wrap {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.4rem 1rem;
-    padding-block: 0.7rem;
+    gap: 1rem;
   }
 
-  /* ---------- Wordmark + monogram ---------- */
   .wordmark {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.65rem;
     text-decoration: none;
     color: var(--ink);
   }
   .mark {
-    position: relative;
     display: inline-grid;
     place-items: center;
-    width: 2.05rem;
-    height: 2.05rem;
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-    line-height: 1;
-    color: var(--ink);
-    background: var(--marigold);
-    border: var(--line-thin);
-    border-radius: 3px;
-    box-shadow: 3px 3px 0 var(--ink);
-    transform: rotate(-3deg);
-    transition:
-      transform 0.2s var(--ease-out),
-      box-shadow 0.2s var(--ease-out),
-      background-color 0.2s ease-out;
-    overflow: hidden;
-  }
-  .mark-a,
-  .mark-n {
-    position: relative;
-    z-index: 1;
-  }
-  .mark-n {
-    margin-left: -0.09em;
-    color: var(--tomato);
-  }
-  /* diagonal accent slice behind the monogram */
-  .mark::before {
-    content: "";
-    position: absolute;
-    inset: -30% -10% auto -10%;
-    height: 55%;
-    background: var(--sand);
-    transform: rotate(-18deg);
-    opacity: 0.35;
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--on-ink);
+    font-weight: 900;
+    font-stretch: 125%;
+    font-size: 0.78rem;
+    letter-spacing: -0.02em;
+    transition: transform 0.5s var(--ease-out);
   }
   .wordmark:hover .mark,
   .wordmark:focus-visible .mark {
-    transform: rotate(0deg) translate(1px, 1px);
-    box-shadow: 2px 2px 0 var(--tomato);
+    transform: rotate(-360deg);
   }
   .wordmark-name {
-    font-size: 1.02rem;
+    font-weight: 860;
+    font-stretch: 125%;
+    font-size: 0.95rem;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.01em;
     line-height: 1;
   }
-  .wordmark-last {
-    color: var(--tomato);
-  }
 
-  /* ---------- Nav links ---------- */
   ul {
     display: flex;
     align-items: center;
-    gap: clamp(0.85rem, 3vw, 2rem);
+    gap: clamp(0.3rem, 2vw, 1.4rem);
     list-style: none;
     margin: 0;
     padding: 0;
   }
   ul a {
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
+    position: relative;
     display: inline-block;
-    padding: 0.65rem 0.15rem calc(0.65rem - 3px);
-    border-bottom: 3px solid transparent;
-    transition: border-color 0.18s ease-out;
+    font-weight: 650;
+    font-size: 0.93rem;
+    text-decoration: none;
+    padding: 0.5rem 0.35rem;
   }
-  ul a:hover {
-    border-bottom-color: var(--tomato);
+  ul a:not(.nav-cv)::after {
+    content: "";
+    position: absolute;
+    left: 0.35rem;
+    right: 0.35rem;
+    bottom: 0.3rem;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s var(--ease-out);
   }
-  ul a[aria-current="page"] {
-    border-bottom-color: var(--ink);
+  ul a:hover::after,
+  ul a[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
-  ul a[aria-current="page"]:hover {
-    border-bottom-color: var(--tomato);
-  }
-  /* CV as a small badge-button */
   .nav-cv {
-    font-family: var(--font-display) !important;
-    font-size: 0.78rem !important;
+    font-weight: 750 !important;
+    font-stretch: 115%;
+    font-size: 0.82rem !important;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    color: var(--ink) !important;
-    background: var(--marigold);
-    border: var(--line-thin);
-    border-radius: 3px;
-    padding: 0.4rem 0.7rem !important;
-    box-shadow: 2px 2px 0 var(--ink);
-    transition:
-      transform 0.15s var(--ease-out),
-      box-shadow 0.15s var(--ease-out) !important;
+    background: var(--ink);
+    color: var(--on-ink);
+    border-radius: 999px;
+    padding: 0.5rem 0.95rem !important;
+    transition: box-shadow 0.2s ease-out;
   }
-  .nav-cv:hover {
-    border-bottom-color: transparent;
-    transform: translate(1px, 1px);
-    box-shadow: 1px 1px 0 var(--tomato);
+  .nav-cv:hover,
+  .nav-cv:focus-visible {
+    box-shadow: 0 0 0 3px var(--amber);
   }
-  @media (max-width: 26rem) {
+
+  /* Name stays in the accessibility tree on phones, only the AN mark shows */
+  @media (max-width: 34rem) {
     .wordmark-name {
-      font-size: 0.92rem;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
     }
   }
   @media (prefers-reduced-motion: reduce) {
+    .site-nav,
     .mark,
-    .nav-cv,
-    ul a {
+    ul a::after {
       transition: none;
     }
   }

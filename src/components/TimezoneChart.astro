@@ -45,17 +45,17 @@
 
 <style>
   .overlap {
-    background: var(--sand);
+    background: var(--base);
     border: var(--line);
     border-radius: 2px;
-    box-shadow: var(--shadow-ink);
+    box-shadow: var(--shadow);
     padding: 1.4rem 1.5rem 1.2rem;
     max-width: 30rem;
     width: 100%;
     margin: 0;
   }
   figcaption {
-    font-family: var(--font-display);
+    font-family: var(--font);
     font-size: 0.78rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -66,10 +66,10 @@
     gap: 0.3rem 1rem;
   }
   .clock-line {
-    font-family: var(--font-body);
+    font-family: var(--font);
     font-weight: 700;
     letter-spacing: 0.03em;
-    color: var(--tomato-deep);
+    color: var(--signal-deep);
     font-variant-numeric: tabular-nums;
   }
   .ol-rows {
@@ -93,7 +93,7 @@
   }
   .ol-bar {
     height: 16px;
-    border: var(--line-thin);
+    border: var(--line);
     border-radius: 2px;
     background-repeat: repeat-x, no-repeat;
     background-size:
@@ -105,9 +105,9 @@
     background-image: linear-gradient(90deg, var(--ink) 0 1px, transparent 1px),
       linear-gradient(
         90deg,
-        var(--tomato) 0 8.33%,
-        var(--sand-deep) 8.33% 75%,
-        var(--tomato) 75% 100%
+        var(--signal) 0 8.33%,
+        var(--base-2) 8.33% 75%,
+        var(--signal) 75% 100%
       );
   }
   /* EU CET 09:00 to 17:00 is 11:00 to 19:00 in Addis Ababa */
@@ -115,9 +115,9 @@
     background-image: linear-gradient(90deg, var(--ink) 0 1px, transparent 1px),
       linear-gradient(
         90deg,
-        var(--sand-deep) 0 45.8%,
+        var(--base-2) 0 45.8%,
         var(--ink) 45.8% 79.2%,
-        var(--sand-deep) 79.2% 100%
+        var(--base-2) 79.2% 100%
       );
   }
   /* Overlay aligned to the bar column only, so the marker's
@@ -136,7 +136,7 @@
     bottom: -6px;
     width: 3px;
     background: var(--ink);
-    box-shadow: 0 0 0 1.5px var(--sand);
+    box-shadow: 0 0 0 1.5px var(--base);
     left: 50%;
     pointer-events: none;
   }
@@ -146,7 +146,7 @@
     top: -1.15rem;
     left: 50%;
     transform: translateX(-50%);
-    font-family: var(--font-display);
+    font-family: var(--font);
     font-size: 0.58rem;
     letter-spacing: 0.08em;
     color: var(--ink);
@@ -158,7 +158,7 @@
     margin-left: calc(6.8em + 0.9em);
     font-size: 0.68rem;
     font-weight: 600;
-    color: var(--ink-soft);
+    color: var(--ink-2);
     font-variant-numeric: tabular-nums;
   }
   .ol-key {
@@ -181,7 +181,7 @@
     vertical-align: -0.08em;
   }
   .key-us::before {
-    background: var(--tomato);
+    background: var(--signal);
   }
   .key-eu::before {
     background: var(--ink);

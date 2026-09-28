@@ -10,7 +10,7 @@ import Base from "../layouts/Base.astro";
     <div class="wrap">
       <header class="contact-head">
         <h1 class="page-title display rise" style="--d:0ms">
-          Let's <span class="uline">talk.</span>
+          Let's <span class="mark-hl">talk.</span>
         </h1>
         <p class="lead rise" style="--d:120ms">
           Hiring for a marketing, growth, or SEO role? Or need a strategist who
@@ -139,7 +139,7 @@ import Base from "../layouts/Base.astro";
     margin-top: 1.6rem;
     max-width: 56ch;
     font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-    color: var(--ink-soft);
+    color: var(--ink-2);
     text-wrap: pretty;
   }
   .contact-grid {
@@ -169,28 +169,28 @@ import Base from "../layouts/Base.astro";
     margin-bottom: 1.4rem;
   }
   .field label {
-    font-family: var(--font-display);
+    font-family: var(--font);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
   .field .opt {
-    font-family: var(--font-body);
+    font-family: var(--font);
     font-weight: 500;
     text-transform: none;
     letter-spacing: 0;
-    color: var(--ink-soft);
+    color: var(--ink-2);
   }
   .field input,
   .field textarea {
-    font-family: var(--font-body);
+    font-family: var(--font);
     font-size: 1rem;
     color: var(--ink);
-    background: var(--sand);
+    background: var(--base);
     border: var(--line);
     border-radius: 2px;
     padding: 0.7rem 0.9rem;
-    box-shadow: 4px 4px 0 var(--sand-deep);
+    box-shadow: 4px 4px 0 var(--base-2);
     transition: box-shadow 0.15s ease-out;
   }
   .field textarea {
@@ -199,17 +199,17 @@ import Base from "../layouts/Base.astro";
   }
   .field input:focus-visible,
   .field textarea:focus-visible {
-    outline: 3px solid var(--cobalt);
+    outline: 3px solid var(--ink);
     outline-offset: 2px;
-    box-shadow: 2px 2px 0 var(--sand-deep);
+    box-shadow: 2px 2px 0 var(--base-2);
   }
   .field input[aria-invalid="true"],
   .field textarea[aria-invalid="true"] {
-    outline: 2px solid var(--tomato);
+    outline: 2px solid var(--signal);
     outline-offset: 1px;
   }
   .field-error {
-    color: var(--tomato-deep);
+    color: var(--signal-deep);
     font-size: 0.82rem;
     font-weight: 600;
   }
@@ -224,7 +224,7 @@ import Base from "../layouts/Base.astro";
   .small-print {
     margin-top: 1.3rem;
     font-size: 0.88rem;
-    color: var(--ink-soft);
+    color: var(--ink-2);
     max-width: 48ch;
   }
 
@@ -232,8 +232,8 @@ import Base from "../layouts/Base.astro";
   .channels {
     border: var(--line);
     border-radius: 2px;
-    background: var(--sand-deep);
-    box-shadow: var(--shadow-ink);
+    background: var(--base-2);
+    box-shadow: var(--shadow);
     padding: clamp(1.4rem, 3vw, 2rem);
   }
   .channels h2 {
@@ -248,7 +248,7 @@ import Base from "../layouts/Base.astro";
   }
   .channels li {
     padding-block: 0.85rem;
-    border-top: var(--line-thin);
+    border-top: var(--line);
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
@@ -262,31 +262,31 @@ import Base from "../layouts/Base.astro";
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--tomato-deep);
+    color: var(--signal-deep);
   }
   .channels a {
     font-weight: 600;
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
-    text-decoration-color: var(--tomato);
+    text-decoration-color: var(--signal);
   }
   .channels a:hover {
-    color: var(--tomato);
+    color: var(--signal);
   }
 
   /* ---------- Blocking modal ---------- */
   .contact-modal {
     margin: auto;
     max-width: min(28rem, calc(100vw - 2.5rem));
-    background: var(--sand);
+    background: var(--base);
     color: var(--ink);
     border: var(--line);
     border-radius: 2px;
-    box-shadow: var(--shadow-tomato);
+    box-shadow: var(--shadow);
     padding: clamp(1.5rem, 4vw, 2.25rem);
   }
   .contact-modal::backdrop {
-    background: rgba(34, 26, 18, 0.55);
+    background: oklch(0.2 0.014 40 / 0.6);
   }
   .contact-modal p {
     font-weight: 600;

@@ -25,10 +25,9 @@
     position: relative;
     width: clamp(7rem, 13vw, 9.5rem);
     aspect-ratio: 1;
-    background: var(--marigold);
-    border: var(--line);
+    background: var(--ink);
+    border: 2px solid var(--ink);
     border-radius: 50%;
-    box-shadow: var(--shadow-ink);
     display: grid;
     place-items: center;
   }
@@ -40,15 +39,17 @@
     animation: orbit-spin 24s linear infinite;
   }
   .orbit-text {
-    font-family: var(--font-display);
+    font-family: var(--font);
+    font-weight: 800;
+    font-stretch: 115%;
     font-size: 15.5px;
     letter-spacing: 0.14em;
-    fill: var(--ink);
+    fill: var(--on-ink);
   }
   .orbit-core {
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     line-height: 1;
-    color: var(--ink);
+    color: var(--amber);
   }
   @keyframes orbit-spin {
     to {

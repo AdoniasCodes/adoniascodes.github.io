@@ -50,7 +50,7 @@
   /* ---- Pointer-tracking 3D tilt ---- */
   var finePointer = window.matchMedia("(pointer: fine)").matches;
   if (!reduce && finePointer) {
-    var MAX = 6; /* degrees */
+    var MAX = 8; /* degrees */
     document.querySelectorAll("[data-tilt]").forEach(function (el) {
       el.style.transition = "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)";
       el.style.willChange = "transform";
@@ -67,6 +67,21 @@
       });
       el.addEventListener("pointerleave", function () {
         el.style.transform = "";
+      });
+    });
+
+    /* ---- Magnetic buttons: pulled a few px toward the cursor ---- */
+    document.querySelectorAll(".btn").forEach(function (btn) {
+      btn.addEventListener("pointermove", function (e) {
+        var r = btn.getBoundingClientRect();
+        var dx = e.clientX - (r.left + r.width / 2);
+        var dy = e.clientY - (r.top + r.height / 2);
+        btn.style.setProperty("--bx", (dx * 0.22).toFixed(1) + "px");
+        btn.style.setProperty("--by", (dy * 0.3).toFixed(1) + "px");
+      });
+      btn.addEventListener("pointerleave", function () {
+        btn.style.setProperty("--bx", "0px");
+        btn.style.setProperty("--by", "0px");
       });
     });
   }

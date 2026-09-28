@@ -1,43 +1,45 @@
-# Design System: adoniasnigussie portfolio
+# Design System: adoniasnigussie portfolio ("Signal", 2026 redesign)
 
-Locked direction: **Warm brutalist-lite** (mockup C base) + the **live timezone-overlap chart** grafted from mockup B, restyled to C's language. Source of truth for every page and component. Reference implementations: `mockups/direction-c.html` (layout, palette, type, motion) and `mockups/direction-b.html` (timezone chart logic only).
+Branch `redesign-2026` replaces the warm brutalist-lite system (still on `main` until approved). Copy, routes, and links are unchanged; only the look and motion changed.
 
-## Palette
+Scene: a founder or hiring manager opens the link from a LinkedIn DM or cold email on a laptop during the workday and decides in ten seconds whether this is a real growth operator. So: loud, confident, numbers first, fast.
 
-| Token | Hex | Use |
-|---|---|---|
-| `--sand` | `#F5EDDC` | Page background |
-| `--sand-deep` | `#ECDFC4` | Bands, surfaces, alt sections |
-| `--ink` | `#221A12` | Text, borders, ink blocks. Never pure #000 |
-| `--tomato` | `#D9411E` | Accent: chunky underlines, hard offset shadows, primary buttons |
-| `--marigold` | `#F2A93B` | Ticker band, tags, stickers, metric figures on ink |
-| `--cobalt` | `#2438B8` | Footer CTA band ONLY. Nowhere else |
+## Palette (OKLCH, tokens in `src/styles/global.css`)
 
-## Typography
+| Token | Value | Hex | Use |
+|---|---|---|---|
+| `--signal` | oklch(0.64 0.2 36) | #ec5022 | Committed brand color: home hero drench, highlight bars, CTAs on ink |
+| `--ink` | oklch(0.2 0.014 40) | #1c1411 | Text, borders, metrics band, footer, last service panel |
+| `--base` | oklch(0.972 0.004 40) | #f8f5f4 | Page background (true off-white, not cream) |
+| `--base-2` | oklch(0.935 0.008 40) | #efe8e5 | Alt sections (services, remote) |
+| `--amber` | oklch(0.83 0.15 78) | #fcba43 | Figures on ink, tags, stickers |
+| `--signal-deep` | oklch(0.5 0.18 36) | #b22900 | Small signal-colored text on base (6:1) |
 
-- **Display:** Archivo Black, uppercase, tight leading. Headlines, metric figures, buttons.
-- **Body/labels:** Archivo (variable). One grotesque family across the site; no second family, no mono.
-- Self-hosted via @fontsource (no Google Fonts CDN in production).
+Contrast rules: text on `--signal` is always `--ink` (4.9:1), never `--ink-2` (fails). Body on base uses `--ink-2` (10:1).
 
-## Signature moves
+## Type
 
-- 3px ink borders; 6px hard offset shadows (tomato or ink) that press in on hover (translate + shadow shrink).
-- Rotated marigold "GMT+3 · ADDIS ABABA" sticker breaking the hero grid.
-- Marigold skills marquee/ticker inside an overflow-hidden band; freezes on prefers-reduced-motion; never causes horizontal page scroll.
-- Staircase-indented "Selected work" ledger rows (no card grid).
-- Testimonial blocks rotated -1deg with tomato shadow.
-- Ink-block metrics ledger with marigold figures.
-- **Timezone chart (from B):** 24-hour dual-bar diagram mapping US CST and EU CET business hours onto Addis time, live "now" marker via Africa/Addis_Ababa clock. Restyle: sand/ink/tomato, Archivo labels, 3px borders. Lives on the home hero or remote-readiness section.
+One family, chosen deliberately: **Archivo Variable with the width axis** (`@fontsource-variable/archivo/wdth.css`, self-hosted, latin file preloaded). Display = weight 860 to 900 at `font-stretch: 125%`, uppercase, tight leading. Body = 100% width, 400 to 650. Width is the signature: headings with `data-stretch` widen from 68% to 125% as they scroll in (growth, literally).
 
-## Motion
+## 3D and motion
 
-- IntersectionObserver scroll reveals, expo/quint ease-out only. Staggered hero rise on load.
-- No bounce, no elastic, no parallax. Content fully visible without JS (`.js` gate). `prefers-reduced-motion` disables everything.
+- **Hero growth engine** (`src/scripts/growth-engine.js`, three.js Points + custom shader): leads swirl into a funnel behind the portrait and leave as a rising revenue curve. Leans toward the cursor. Loads after the `load` event plus idle, so it never touches LCP. Reduced motion renders one still frame.
+- **Globe** (`src/scripts/globe.js`): Natural Earth 110m land rasterised to a bitmask (`land-mask.js`), arcs from Addis to Estonia, UK, Italy. Drag to spin (horizontal only, `touch-action: pan-y` keeps page scroll), arrow keys when focused. Mounted 600px before it enters view.
+- **Scroll** (`src/scripts/scroll.js`): Lenis smooth scroll + GSAP ScrollTrigger. Nav melts into the hero, turns solid, hides on scroll down. Ticker speed follows scroll velocity. Metrics wipe in and widen. Service panels stack (sticky) and tip back. Quotes counter-rotate. Footer name rises and widens.
+- **Pointer**: magnetic buttons, 3D tilt on photos, work rows get an ink wipe plus a cursor-following vermilion preview card (fine pointer, 60rem+ only).
+- Page transitions: CSS cross-document view transitions (no JS).
+- Everything is enhancement: content is visible with JS off, and `prefers-reduced-motion` disables Lenis, GSAP, and all transitions.
 
-## Hard bans
+## Performance budget (Lighthouse, 2026-09-28)
 
-Inter/Roboto/Arial/system-ui as visible fonts · purple or blue-purple gradients · pure #000/#fff · untinted grays · uniform 16px radius (radius is 0 to 2px here) · cards nested in cards · bento reflex grids · glassmorphism/radial glows · em dashes in any copy · lorem ipsum · vanishing toast errors (blocking modal with OK instead).
+Mobile 97 / 100 / 100 / 100, desktop 100 across the board. CSS is inlined (`build.inlineStylesheets: 'always'`). three.js (~129KB gz) is lazy-loaded only on the home page.
 
-## Components
+## Hard bans (unchanged intent)
 
-Nav (wordmark + Work/About/Contact, wraps on mobile) · Footer (cobalt CTA band) · MetricsLedger · WorkLedger (staircase) · Testimonial · TimezoneChart · Ticker · Sticker · ContactForm (Netlify, blocking success/error modals) · ScrollReveal script.
+Em dashes in any copy · cream/sand body backgrounds · gradient text · glassmorphism · identical card grids · numbered section eyebrows · vanishing toasts (contact form uses a blocking dialog with OK) · text overflow at any breakpoint.
+
+## Gotchas
+
+- `public/.nojekyll` MUST exist or GitHub Pages drops `_astro/` and the site loses CSS.
+- Astro JSX: a newline between `{expr}` and `<span>` renders a space (it broke "$22K" into "$ 22 K" once). Keep numeral parts on one line.
+- GSAP `filter` tweens from `none` start at brightness(0). Always `fromTo` with `brightness(1)`.

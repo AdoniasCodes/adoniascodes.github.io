@@ -18,71 +18,84 @@ const shown = (m: Metric) =>
 ---
 
 <section class="metrics" aria-labelledby="metrics-title">
-  <h2 id="metrics-title" class="sr-only">Results</h2>
-  <div class="wrap metrics-grid">
-    {
-      metrics.map((metric, i) => (
-        <div class="metric" data-reveal data-tilt style={`--d:${i * 90}ms`}>
-          <span class="stat display">
-            {metric.prefix}<span
-              data-countup
-              data-target={metric.value}
-              data-format={metric.format}
-            >{shown(metric)}</span>{metric.suffix}
-          </span>
-          <p>{metric.label}</p>
-        </div>
-      ))
-    }
+  <div class="wrap">
+    <h2 id="metrics-title" class="metrics-title display" data-stretch>
+      <span class="mark-hl">Results</span>
+    </h2>
+    <ol class="metrics-list">
+      {
+        metrics.map((metric) => (
+          <li class="metric" data-metric-row>
+            <span class="stat display">
+              {metric.prefix}<span data-countup data-target={metric.value} data-format={metric.format}>{shown(metric)}</span>{metric.suffix}
+            </span>
+            <p>{metric.label}</p>
+          </li>
+        ))
+      }
+    </ol>
   </div>
 </section>
 
 <style>
   .metrics {
+    position: relative;
     background: var(--ink);
-    color: var(--sand);
-    padding-block: clamp(3rem, 7vw, 5.5rem);
+    color: var(--on-ink);
+    padding-block: clamp(5rem, 11vw, 8.5rem) clamp(4rem, 9vw, 7rem);
   }
-  .metrics-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+  .metrics-title {
+    font-size: clamp(1.9rem, 5vw, 3.6rem);
+    text-transform: uppercase;
+    max-width: 16ch;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+  .metrics-title .mark-hl {
+    color: var(--on-ink);
+    background-image: linear-gradient(var(--signal), var(--signal));
+  }
+  .metrics-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--rule-ink);
   }
   .metric {
-    padding: 1.6rem 0.25rem;
-    border-top: 2px solid #4b4030;
-  }
-  .metric:first-child {
-    border-top: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-block: clamp(1.4rem, 3vw, 2.2rem);
+    border-top: 1px solid var(--rule-ink);
   }
   .stat {
     display: block;
-    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-    line-height: 1.05;
-    color: var(--marigold);
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 0.95;
+    color: var(--amber);
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    letter-spacing: -0.03em;
   }
   .metric p {
-    margin-top: 0.5rem;
-    max-width: 30ch;
-    font-size: 0.98rem;
-    color: #e9dfc9;
+    max-width: 34ch;
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    line-height: 1.5;
+    color: var(--on-ink-2);
+    text-wrap: pretty;
   }
-  @media (min-width: 46rem) {
-    .metrics-grid {
-      grid-template-columns: 1fr 1fr;
-    }
+  .metric:nth-child(even) .stat {
+    color: var(--on-ink);
+  }
+  @media (min-width: 52rem) {
     .metric {
-      padding: 2.2rem 2.4rem;
-      border-top: 2px solid #4b4030;
-      border-left: 2px solid #4b4030;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      align-items: end;
+      column-gap: 3rem;
     }
-    .metric:nth-child(1),
-    .metric:nth-child(2) {
-      border-top: none;
-    }
-    .metric:nth-child(odd) {
-      border-left: none;
-      padding-left: 0;
+    .metric p {
+      padding-bottom: 0.6rem;
+      justify-self: end;
     }
   }
 </style>
