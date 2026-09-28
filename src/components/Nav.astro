@@ -1,6 +1,6 @@
 ---
 interface Props {
-  tone?: "signal" | "base";
+  tone?: "signal" | "base" | "dark";
 }
 
 const { tone = "base" } = Astro.props;
@@ -62,6 +62,25 @@ const isCurrent = (href: string) =>
   /* On the home hero the bar melts into the vermilion field */
   .site-nav.tone-signal {
     background: transparent;
+  }
+  /* Over the dark "curve" hero the bar inverts until it turns solid */
+  .site-nav.tone-dark:not(.is-scrolled) {
+    background: transparent;
+    color: var(--on-ink);
+  }
+  .site-nav.tone-dark:not(.is-scrolled) .wordmark {
+    color: var(--on-ink);
+  }
+  .site-nav.tone-dark:not(.is-scrolled) .mark {
+    background: var(--signal);
+    color: var(--ink);
+  }
+  .site-nav.tone-dark:not(.is-scrolled) .nav-cv {
+    background: var(--signal);
+    color: var(--ink);
+  }
+  .site-nav.tone-dark:not(.is-scrolled) :focus-visible {
+    outline-color: var(--amber);
   }
   .site-nav.is-scrolled {
     background: var(--base);

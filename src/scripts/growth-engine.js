@@ -95,7 +95,7 @@ function build(count, kind) {
   return geo;
 }
 
-export function mount(host, opts = {}) {
+export async function mount(host, opts = {}) {
   const canvas = host.querySelector("canvas");
   const anchor = opts.anchor || null;
   const labels = opts.labels || {};
@@ -242,6 +242,11 @@ export function mount(host, opts = {}) {
   });
   ro.observe(host);
 
+  /* Compile shaders off the main thread where supported, then yield once */
+  try {
+    await renderer.compileAsync(scene, camera);
+  } catch {}
+  await new Promise((r) => setTimeout(r, 0));
   place();
   frame(performance.now());
   host.classList.add("scene-on");

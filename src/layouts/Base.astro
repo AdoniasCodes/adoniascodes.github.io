@@ -12,9 +12,11 @@ interface Props {
   ogImage?: string;
   type?: string;
   page?: string;
+  navTone?: "signal" | "base" | "dark";
+  noindex?: boolean;
 }
 
-const { title, description, ogImage, type, page = "inner" } = Astro.props;
+const { title, description, ogImage, type, page = "inner", navTone, noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -27,6 +29,7 @@ const { title, description, ogImage, type, page = "inner" } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
     <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <Seo title={title} description={description} ogImage={ogImage} type={type} />
     <PersonSchema />
     <script is:inline>
@@ -42,7 +45,7 @@ const { title, description, ogImage, type, page = "inner" } = Astro.props;
   </head>
   <body class={`page-${page}`}>
     <a class="skip-link" href="#main">Skip to content</a>
-    <Nav tone={page === "home" ? "signal" : "base"} />
+    <Nav tone={navTone ?? (page === "home" ? "signal" : "base")} />
     <main id="main">
       <slot />
     </main>
