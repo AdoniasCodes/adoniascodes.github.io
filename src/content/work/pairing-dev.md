@@ -24,7 +24,7 @@ Then the role widened past acquisition. I took on product marketing and position
 
 - The SaaS portfolio now runs at roughly **$22K in monthly recurring revenue**, up from little or none when I joined
 - Landed a **€10,000 upfront enterprise deal** that brought in 30+ sub-clients, one of the studio's largest commercial wins
-- Built an automated pipeline that sources and auto-qualifies **1,000+ leads a day**, and ran cold-email sequences at a **23% open and 6% reply rate**
+- Built an automated pipeline that sources and auto-qualifies **1,500+ leads a week**, and ran cold-email sequences at a **23% open and 6% reply rate**
 - **CribCRM** became the studio's strongest-performing product, with growth, onboarding, and launch marketing I owned end to end
 - Cut campaign execution time **~70%** with AI workflows I built in-house
 

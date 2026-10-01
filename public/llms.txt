@@ -2,15 +2,20 @@
 
 > Marketing and growth strategist based in Addis Ababa, Ethiopia, who builds the SEO, content, paid, and AI systems that grow businesses. Experience across Estonia, the UK, Italy, and Ethiopia. Specialties: marketing and business strategy, SEO and content, paid media (Meta, Google, TikTok), and AI-driven marketing systems. Open to roles locally and internationally, plus freelance and consulting.
 
-Key verified results: grew a multi-product SaaS portfolio to roughly $22K monthly recurring revenue and landed a €10,000 enterprise deal (Pairing.dev, Estonia); a roughly 300% lead-generation lift for Palm Real Estate and a roadside-assistance startup launched from zero (Eagle Eye Business Group); a B2B product scaled from 100 to 500 customers in 12 months (Jaktech); top-3 Google rankings for 14 keywords via vertical SEO for Electric Car Chargers UK (Recognise Design); an automated pipeline sourcing 1,000+ qualified leads a day; ~70% campaign execution time cut via n8n and LLM automation.
+Key verified results: grew a multi-product SaaS portfolio to roughly $22K monthly recurring revenue and landed a €10,000 enterprise deal (Pairing.dev, Estonia); a roughly 300% lead-generation lift for Palm Real Estate and a roadside-assistance startup launched from zero (Eagle Eye Business Group); a B2B product scaled from 100 to 500 customers in 12 months (Jaktech); top-3 Google rankings for 14 keywords via vertical SEO for Electric Car Chargers UK (Recognise Design); an automated pipeline sourcing and qualifying 1,500+ leads a week; ~70% campaign execution time cut via n8n and LLM automation.
 
 ## Work
 
-- [Pairing.dev case study](/work/pairing-dev/): outbound engine, 1,000+ leads/month across multiple B2B SaaS products
+- [Pairing.dev case study](/work/pairing-dev/): outbound engine, 1,500+ leads/week across multiple B2B SaaS products
 - [Eagle Eye case study](/work/eagle-eye/): 30+ paid campaigns, up to 300% lead-generation lift
 - [Jaktech case study](/work/jaktech/): 100 to 500 B2B customers in one year
 - [Recognise Design case study](/work/recognise-designs/): UK vertical-SEO engagement for Electric Car Chargers UK, top-3 rankings for 14 keywords
 - [Lifecare Pharmaceuticals case study](/work/lifecare/): in-progress SEO engagement documented from zero
+
+## Blog
+
+- [I Automate Most of My Marketing With AI. Here's Where I Stop Letting It Write.](/blog/where-ai-stops-in-my-marketing/): which marketing work goes to AI and which stays human, with 2026 data on Google spam updates, AI Overviews, and AI citations
+- [Your Dashboard Can't See AI. Here's How to Measure Marketing in 2026.](/blog/measuring-marketing-when-ai-answers-first/): zero-click search, attribution gaps, Search Console AI reports, and a free measurement setup for small teams
 
 ## Pages
 

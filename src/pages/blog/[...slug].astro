@@ -1,0 +1,286 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const d = entry.data;
+
+const site = Astro.site ?? new URL("https://adoniascodes.github.io");
+const url = new URL(`/blog/${entry.id}/`, site).href;
+const iso = (date: Date) => date.toISOString().slice(0, 10);
+const nice = (date: Date) =>
+  date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+const words = entry.body?.split(/\s+/).length ?? 0;
+const minutes = Math.max(1, Math.round(words / 230));
+
+const graph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": `${url}#post`,
+      headline: d.title,
+      description: d.description,
+      datePublished: iso(d.pubDate),
+      dateModified: iso(d.updatedDate ?? d.pubDate),
+      author: { "@id": "https://adoniascodes.github.io/#adonias" },
+      publisher: { "@id": "https://adoniascodes.github.io/#adonias" },
+      mainEntityOfPage: url,
+      url,
+      image: new URL("/og-default.png", site).href,
+      keywords: d.keywords.join(", "),
+      wordCount: words,
+      inLanguage: "en",
+    },
+    ...(d.faq.length
+      ? [
+          {
+            "@type": "FAQPage",
+            "@id": `${url}#faq`,
+            mainEntity: d.faq.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          },
+        ]
+      : []),
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: site.href },
+        { "@type": "ListItem", position: 2, name: "Blog", item: new URL("/blog/", site).href },
+        { "@type": "ListItem", position: 3, name: d.title, item: url },
+      ],
+    },
+  ],
+};
+
+const toc = headings.filter((h) => h.depth === 2 && h.text !== "Sources");
+---
+
+<Base title={d.seoTitle} description={d.description} type="article">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(graph)} />
+  <meta slot="head" property="article:published_time" content={iso(d.pubDate)} />
+  <meta slot="head" property="article:author" content="Adonias Nigussie" />
+
+  <article class="post">
+    <div class="wrap-narrow">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a>
+      </nav>
+      <header class="post-head">
+        <h1 class="display rise" style="--d:0ms">{d.title}</h1>
+        <p class="post-meta rise" style="--d:120ms">
+          By <a href="/about/" rel="author">Adonias Nigussie</a>{" · "}<time datetime={iso(d.pubDate)}>{nice(d.pubDate)}</time>{" · "}{minutes} min read
+        </p>
+      </header>
+
+      {
+        toc.length > 2 && (
+          <nav class="toc" aria-label="In this article">
+            <p class="toc-label">In this article</p>
+            <ol>
+              {toc.map((h) => (
+                <li>
+                  <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
+
+      <div class="post-prose">
+        <Content />
+      </div>
+
+      {
+        d.faq.length > 0 && (
+          <section class="post-prose faq" aria-labelledby="faq">
+            <h2 id="faq">FAQ</h2>
+            {d.faq.map((f) => (
+              <>
+                <h3>{f.q}</h3>
+                <p>{f.a}</p>
+              </>
+            ))}
+          </section>
+        )
+      }
+
+      <aside class="bio">
+        <p>
+          <strong>Adonias Nigussie</strong> is a marketing and growth strategist based in Addis Ababa,
+          working remotely with teams in Estonia, the UK, and Italy. He builds AI-driven marketing
+          systems and writes about SEO, AI search, and growth. <a href="/work/">See his work</a> or
+          <a href="/contact/">get in touch</a>.
+        </p>
+      </aside>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post {
+    padding-block: clamp(3rem, 7vw, 5rem) clamp(4rem, 9vw, 7rem);
+  }
+  .crumbs {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-2);
+    margin-bottom: 1.4rem;
+  }
+  .crumbs a {
+    color: var(--ink-2);
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--signal-deep);
+  }
+  .post-head h1 {
+    font-size: clamp(1.9rem, 5vw, 3.2rem);
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+  .post-meta {
+    margin-top: 1.2rem;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+  .post-meta a {
+    color: var(--ink);
+    font-weight: 650;
+    text-decoration-color: var(--signal);
+    text-underline-offset: 3px;
+  }
+  .toc {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    border: var(--line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.4rem;
+    background: var(--base-2);
+    max-width: 68ch;
+  }
+  .toc-label {
+    font-size: 0.78rem;
+    font-weight: 750;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--signal-deep);
+    margin-bottom: 0.5rem;
+  }
+  .toc ol {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.35rem;
+  }
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .toc a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--signal);
+  }
+  .post-prose {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    max-width: 68ch;
+    font-size: 1.06rem;
+    line-height: 1.7;
+  }
+  .post-prose :global(> * + *) {
+    margin-top: 1.1em;
+  }
+  .post-prose :global(h2) {
+    font-weight: 820;
+    font-stretch: 115%;
+    font-size: clamp(1.35rem, 2.8vw, 1.8rem);
+    line-height: 1.15;
+    margin-top: clamp(2.4rem, 5vw, 3.2rem);
+    scroll-margin-top: calc(var(--nav-h) + 1rem);
+  }
+  .post-prose :global(h3) {
+    font-weight: 760;
+    font-size: 1.2rem;
+    line-height: 1.25;
+    margin-top: 2rem;
+    scroll-margin-top: calc(var(--nav-h) + 1rem);
+  }
+  .post-prose :global(p),
+  .post-prose :global(li) {
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .post-prose :global(strong) {
+    color: var(--ink);
+  }
+  .post-prose :global(a) {
+    font-weight: 650;
+    color: var(--ink);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--signal);
+  }
+  .post-prose :global(a:hover) {
+    color: var(--signal-deep);
+  }
+  .post-prose :global(ul),
+  .post-prose :global(ol) {
+    padding-left: 1.3rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .post-prose :global(ul) {
+    list-style: square;
+  }
+  .post-prose :global(li::marker) {
+    color: var(--signal);
+  }
+  .post-prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    border: var(--line);
+    font-size: 0.98rem;
+    display: block;
+    overflow-x: auto;
+  }
+  .post-prose :global(th),
+  .post-prose :global(td) {
+    border: 1px solid var(--ink);
+    padding: 0.65rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .post-prose :global(th) {
+    background: var(--ink);
+    color: var(--on-ink);
+  }
+  .faq {
+    border-top: var(--line);
+    margin-top: clamp(2.6rem, 6vw, 3.6rem);
+  }
+  .bio {
+    margin-top: clamp(2.6rem, 6vw, 3.6rem);
+    max-width: 68ch;
+    border: var(--line);
+    border-radius: var(--radius);
+    background: var(--amber);
+    box-shadow: 4px 4px 0 var(--ink);
+    padding: 1.1rem 1.4rem;
+  }
+  .bio a {
+    color: var(--ink);
+    font-weight: 700;
+    text-underline-offset: 3px;
+  }
+</style>
