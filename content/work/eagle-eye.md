@@ -2,7 +2,7 @@
 
 **Role:** Performance Marketing Director (contract)
 **Client:** Eagle Eye Business Group. Multi-client business group spanning services and consumer launches.
-**Period:** February 2025 to present
+**Period:** February 2025 to April 2026
 **Keywords woven:** paid social, paid search, CAC, go-to-market, launch
 
 ## Challenge

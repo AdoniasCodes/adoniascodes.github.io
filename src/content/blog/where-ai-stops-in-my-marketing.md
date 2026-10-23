@@ -15,7 +15,7 @@ faq:
     a: "Treat every AI answer as a lead to check, not a fact. Open the original source before you quote anything, and keep the link next to the claim."
 ---
 
-Every week, a pipeline I built finds and qualifies more than 1,500 sales leads without me touching it. AI workflows I set up in n8n cut the time it takes to run a campaign by roughly 70%. I use Claude and ChatGPT every working day.
+Every week, a pipeline I built finds and qualifies more than 1,500 sales leads without me touching it. AI workflows I set up cut the time it takes to run a campaign by roughly 70%. I use Claude and ChatGPT every working day.
 
 And I still write the final version of almost everything a customer reads.
 

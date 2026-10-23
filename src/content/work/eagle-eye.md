@@ -3,7 +3,7 @@ title: "Building an agency, and a 300% lead-gen win for its clients"
 client: "Eagle Eye Business Group"
 clientDetail: "Eagle Eye Business Group, Ethiopia. A marketing, branding, and web agency I helped build."
 role: "Marketing Director"
-period: "February 2025 to present"
+period: "February 2025 to April 2026"
 teaser: "A 300% lead-gen lift for Palm Real Estate, plus a roadside-assistance startup launched from zero"
 tag: "Agency"
 order: 2
@@ -27,6 +27,6 @@ We also built products of our own. **CarCare** was the biggest: Ethiopia's take 
 - **Palm Real Estate: roughly 300% increase in lead generation** after the funnel and campaign rebuild
 - **CarCare** launched from zero, validated the membership model, and reached **12 to 20 daily customers** in its first month
 - Delivered client websites, SEO projects, and multi-channel campaigns across the agency's book
-- Built the creative and campaign systems the team still runs
+- Built the creative and campaign systems for the team
 
 *This is where I stopped being a marketer for hire and started building businesses, not just marketing them.*

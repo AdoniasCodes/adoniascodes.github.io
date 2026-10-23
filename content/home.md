@@ -12,7 +12,7 @@
 ## Metrics band
 
 - **300%** client lead-generation lift across 30+ paid campaigns
-- **1,000+** outbound leads per month at 23% open, 6% reply
+- **1,500+** leads a week at 23% open, 6% reply
 - **100 to 500** B2B customers grown in 12 months
 - **70%** execution time cut with AI-driven workflows
 
@@ -29,7 +29,7 @@
 - **Customer acquisition**: Cold email outbound, paid social and paid search, demand generation. I build the system, write the copywriting, and manage it to a CAC target.
 - **SEO and content strategy**: Keyword research, editorial planning, blog production, technical SEO. Content that ranks and sells.
 - **Funnels and CRO**: Landing pages, A/B testing, activation and retention flows, analytics wired end to end in GA4 and HubSpot.
-- **AI-powered marketing systems**: n8n and LLM workflows that cut execution time by about 70%. I build internal ai tools instead of hiring more hands.
+- **AI-powered marketing systems**: AI workflows (Claude, ChatGPT) that cut execution time by about 70%. I build internal ai tools instead of hiring more hands.
 
 ## Testimonials
 

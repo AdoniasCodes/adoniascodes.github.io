@@ -1,6 +1,6 @@
 # Pairing.dev: An outbound engine that fills the pipeline every month
 
-**Role:** Digital Marketing Manager & Growth Strategist (contract, remote)
+**Role:** Marketing Operations & Growth Manager (contract, remote)
 **Client:** Pairing.dev, Estonia. B2B SaaS studio running multiple products.
 **Period:** July 2025 to present
 **Keywords woven:** customer acquisition, copywriting, segmentation, ai tools, activation, startup founders
@@ -13,13 +13,13 @@ Pairing.dev runs several B2B SaaS products at once, each needing its own pipelin
 
 I built the outbound system from scratch. Lead sourcing and segmentation first, so every product spoke to a list that matched its buyer. Then the copy: short, specific cold emails written per segment, tested subject line by subject line. Instantly handled sending and deliverability. HubSpot tracked every reply through nurturing, qualification, and pipeline conversion.
 
-The multiplier came from automation. I built n8n and LLM workflows that handle list building, personalization, and campaign assembly, the kind of ai tools that let one marketer run what normally takes a team. Execution time dropped by about 70%, which is why multiple product pipelines stay full at once.
+The multiplier came from automation. I built AI workflows (Claude, ChatGPT) that handle list building, personalization, and campaign assembly, the kind of ai tools that let one marketer run what normally takes a team. Execution time dropped by about 70%, which is why multiple product pipelines stay full at once.
 
 I work directly with the founders on GTM strategy, performance analytics, and funnel optimization, the way an in-house growth lead would at a startup.
 
 ## Result
 
-- 1,000+ leads generated and managed per month across concurrent multi-product campaigns
+- 1,500+ leads generated a week across concurrent multi-product campaigns
 - 23% open rate and 6% reply rate, sustained, on cold traffic
 - Roughly 70% less execution time per campaign after the AI workflow build
 - Full lead lifecycle owned in one system, from first touch to activation and pipeline
