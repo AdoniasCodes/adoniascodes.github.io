@@ -6,7 +6,7 @@ I've been doing this since 2019: 40+ clients, 30+ websites shipped, and five yea
 
 ## What makes me different
 
-**I ship systems, not just campaigns.** When execution gets slow, I build the tool that fixes it. AI workflows with Claude and ChatGPT, internal apps. At Pairing.dev that cut campaign execution time by about 70%. I even built my own job-application tracking system with 12 data sources and AI-driven scoring, because spreadsheets were too slow. [PENDING YOUR OK: mention Crib CRM, the SaaS you're co-building, here as a second systems example]
+**I ship systems, not just campaigns.** When execution gets slow, I build the tool that fixes it. AI workflows with Claude and ChatGPT, internal apps. At Pairing.dev that cut campaign execution time by about 70%. I also helped build a lead scraping and grading platform with the Pairing and CribCRM team: it gathers leads from multiple sources, grades each against the ideal customer profile with AI, and ranks them for outreach.
 
 **I've done every layer.** Cold email copywriting, Meta and Google and TikTok media buying, technical SEO, funnel builds on four CMS platforms, analytics in GA4 and HubSpot, and team management (5 to 7 people across creative, media buying, and events). You can hand me a growth problem without also hiring three specialists around me.
 
